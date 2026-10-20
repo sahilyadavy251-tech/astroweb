@@ -60,16 +60,20 @@
         <div><label data-i18n="dob">Birth Date</label><input id="dob" type="date" value="1990-05-15"></div>
         <div><label data-i18n="tob">Birth Time</label><input id="tob" type="time" value="10:30"></div>
       </div>
-      <div style="margin-bottom:12px">
+      <div style="margin-bottom:8px">
         <label data-i18n="pob">Place of Birth</label>
         <input id="place" type="text" autocomplete="off" data-i18n-ph="pobPh" placeholder="Start typing a city…">
         <div id="sugg" class="sugg"></div>
+        <div class="hint" data-i18n="pobHint">Latitude &amp; longitude fill in automatically from the city.</div>
       </div>
-      <div class="grid g3" style="margin-bottom:14px">
-        <div><label data-i18n="lat">Latitude</label><input id="lat" type="number" step="0.0001" value="28.6139"></div>
-        <div><label data-i18n="lon">Longitude</label><input id="lon" type="number" step="0.0001" value="77.2090"></div>
-        <div><label data-i18n="tz">Timezone (UTC offset)</label><input id="tz" type="number" step="0.25" value="5.5"></div>
-      </div>
+      <details class="adv" style="margin-bottom:14px">
+        <summary data-i18n="advanced">Advanced settings (latitude, longitude, timezone)</summary>
+        <div class="grid g3" style="margin-top:10px">
+          <div><label data-i18n="lat">Latitude</label><input id="lat" type="number" step="any" inputmode="decimal" value="28.6139"></div>
+          <div><label data-i18n="lon">Longitude</label><input id="lon" type="number" step="any" inputmode="decimal" value="77.2090"></div>
+          <div><label data-i18n="tz">Timezone (UTC offset)</label><input id="tz" type="number" step="any" inputmode="decimal" value="5.5"></div>
+        </div>
+      </details>
       <div class="grid g2" style="align-items:end">
         <div><label data-i18n="lang">Language</label>
           <select id="langSel"><option value="en">English</option><option value="hi">हिंदी</option></select></div>
