@@ -4,7 +4,8 @@ from __future__ import annotations
 from . import constants as C
 from . import divisional as DV
 
-KARAKA_PLANETS = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu"]
+# Chara karakas are taken from the seven planets only (Rahu/Ketu excluded).
+KARAKA_PLANETS = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
 
 
 def _sign(lon):
@@ -17,12 +18,7 @@ def _deg_in_sign(lon):
 
 def chara_karakas(pos):
     """Rank the eight karakas by descending degree in sign (Rahu reversed)."""
-    degs = {}
-    for p in KARAKA_PLANETS:
-        d = _deg_in_sign(pos[p])
-        if p == "Rahu":
-            d = 30.0 - d
-        degs[p] = d
+    degs = {p: _deg_in_sign(pos[p]) for p in KARAKA_PLANETS}
     order = sorted(KARAKA_PLANETS, key=lambda p: degs[p], reverse=True)
     out = {}
     for (code, name), p in zip(C.CHARA_KARAKAS, order):
