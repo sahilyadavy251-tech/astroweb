@@ -44,14 +44,38 @@ def index():
     return render_template("index.html")
 
 
+def _strip_accents(s):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFKD", s)
+                   if not unicodedata.combining(c)).lower()
+
+
+def _city_brief(c):
+    return {"name": c["name"], "region": c.get("region", ""),
+            "lat": c["lat"], "lon": c["lon"], "tz": c["tz"]}
+
+
 @app.route("/api/cities")
 def api_cities():
-    q = (request.args.get("q") or "").strip().lower()
+    q = (request.args.get("q") or "").strip()
     if not q:
-        return jsonify(CITIES[:40])
-    hits = [c for c in CITIES
-            if q in c["name"].lower() or q in c.get("region", "").lower()]
-    return jsonify(hits[:40])
+        return jsonify([_city_brief(c) for c in CITIES if c.get("pri")][:40])
+    qn = _strip_accents(q)
+    exact, starts, word, contains = [], [], [], []
+    for c in CITIES:
+        a = c.get("a") or _strip_accents(c["name"])
+        if a == qn:
+            exact.append(c)
+        elif a.startswith(qn):
+            starts.append(c)
+        elif any(w.startswith(qn) for w in a.replace(",", " ").split()):
+            word.append(c)
+        elif qn in a:
+            contains.append(c)
+    def rank(lst):
+        return sorted(lst, key=lambda c: (-c.get("pri", 0), c.get("a", "")))
+    res = exact + rank(starts) + rank(word) + rank(contains)
+    return jsonify([_city_brief(c) for c in res[:40]])
 
 
 @app.route("/api/chart", methods=["POST"])
