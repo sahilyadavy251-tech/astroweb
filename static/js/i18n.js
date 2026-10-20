@@ -3,6 +3,7 @@ const I18N = {
   en: {
     tagline: "Vedic + KP + Lal Kitab + Nadi Astrology",
     navKundli: "कुंडली / Kundli", navBirth: "BIRTH CHART", navMatch: "KUNDLI MATCHING", navPanchang: "PANCHANG",
+    navBnn: "NADI (BNN) →", openBnn: "Open the full Nadi (BNN) + Progression tool",
     home: "Home", astrology: "Astrology", kundli: "Kundli",
     pageTitle: "Kundli • Free Janam Kundli Online",
     bannerH: "Kundli", bannerP: "Get Your Janam Kundali",
@@ -59,6 +60,7 @@ const I18N = {
   hi: {
     tagline: "वैदिक + केपी + लाल किताब + नाड़ी ज्योतिष",
     navKundli: "कुंडली", navBirth: "जन्म कुंडली", navMatch: "कुंडली मिलान", navPanchang: "पंचांग",
+    navBnn: "नाड़ी (BNN) →", openBnn: "पूरा नाड़ी (BNN) + प्रगति टूल खोलें",
     home: "होम", astrology: "ज्योतिष", kundli: "कुंडली",
     pageTitle: "कुंडली • मुफ़्त जन्म कुंडली ऑनलाइन",
     bannerH: "कुंडली", bannerP: "अपनी जन्म कुंडली बनाएं",
