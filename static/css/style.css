@@ -1,0 +1,79 @@
+:root{
+  --bg:#0f1220; --panel:#181c2f; --panel2:#1f2440; --ink:#e8eaf6; --muted:#9aa2c7;
+  --gold:#e0b45c; --gold2:#f2cf8a; --accent:#7c8cf8; --line:#2a3054;
+  --good:#4fd1a5; --bad:#ff7b7b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,'Noto Sans Devanagari',sans-serif;
+  background:radial-gradient(1200px 700px at 15% -10%,#1b2145 0%,var(--bg) 55%);color:var(--ink);line-height:1.5}
+a{color:var(--gold2)}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;
+  background:rgba(15,18,32,.9);backdrop-filter:blur(8px);z-index:20}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .om{font-size:28px;color:var(--gold)}
+.brand h1{font-size:18px;margin:0;letter-spacing:.3px}
+.brand small{color:var(--muted);display:block;font-size:11px}
+.langbtn{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.langbtn button{background:transparent;color:var(--muted);border:0;padding:7px 14px;cursor:pointer;font-size:13px}
+.langbtn button.on{background:var(--gold);color:#1a1406;font-weight:600}
+main{max-width:1180px;margin:0 auto;padding:22px}
+.card{background:linear-gradient(180deg,var(--panel) 0%,var(--panel2) 100%);
+  border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}
+h2{margin:0 0 14px;font-size:16px;color:var(--gold2);letter-spacing:.3px}
+h3{margin:18px 0 8px;font-size:14px;color:var(--accent)}
+.grid{display:grid;gap:12px}
+.grid.cols2{grid-template-columns:1fr 1fr}
+.grid.cols3{grid-template-columns:repeat(3,1fr)}
+.grid.cols4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.grid.cols2,.grid.cols3,.grid.cols4{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:12px;color:var(--muted);margin:0 0 5px}
+input,select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+  background:#0c0f1e;color:var(--ink);font-size:14px}
+input:focus,select:focus{outline:1px solid var(--accent)}
+.btn{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#1a1406;border:0;
+  padding:12px 22px;border-radius:11px;font-weight:700;cursor:pointer;font-size:14px}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:wait}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+tr:hover td{background:rgba(124,140,248,.06)}
+.muted{color:var(--muted)}
+.pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;background:var(--panel2);
+  border:1px solid var(--line);margin:2px 4px 2px 0}
+.pill.gold{background:rgba(224,180,92,.15);border-color:var(--gold);color:var(--gold2)}
+.pill.good{background:rgba(79,209,165,.14);border-color:var(--good);color:var(--good)}
+.pill.bad{background:rgba(255,123,123,.14);border-color:var(--bad);color:var(--bad)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.tabs button{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+  padding:8px 14px;border-radius:20px;cursor:pointer;font-size:13px}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.section{display:none}
+.section.on{display:block}
+.stat{background:#0c0f1e;border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat b{display:block;font-size:19px;color:var(--gold2)}
+.stat span{font-size:12px;color:var(--muted)}
+/* South Indian chart */
+.schart{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);
+  width:min(520px,92vw);aspect-ratio:1;margin:0 auto;border:2px solid var(--gold);
+  border-radius:8px;overflow:hidden;background:#0c0f1e}
+.cell{border:1px solid var(--line);position:relative;padding:4px;font-size:11px;min-height:60px}
+.cell .sg{color:var(--gold);font-size:10px;font-weight:700}
+.cell .pl{display:block;color:var(--ink)}
+.cell.center{background:#0a0d18;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:12px;text-align:center;grid-column:2/4;grid-row:2/4}
+.cell.center .big{color:var(--gold2);font-size:13px}
+.retro{color:var(--bad)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)}
+.dashrow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.dashrow .lord{min-width:80px;color:var(--gold2);font-weight:600}
+.bar{height:8px;border-radius:6px;background:var(--accent);opacity:.8}
+.loader{display:none;text-align:center;padding:40px;color:var(--muted)}
+.loader.on{display:block}
+.spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--gold);
+  border-radius:50%;margin:0 auto 12px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+.notice{background:rgba(224,180,92,.08);border:1px solid rgba(224,180,92,.35);border-radius:12px;
+  padding:12px 14px;font-size:12.5px;color:var(--gold2);margin-bottom:16px}
