@@ -24,23 +24,29 @@ from . import constants as C
 _HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(_HERE, "data")
 _EPH_CANDIDATES = ["de440s.bsp", "de421.bsp", "de440.bsp"]
+_JPL_URL = "https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/de440s.bsp"
 
 
 @lru_cache(maxsize=1)
 def _load():
     ts = load.timescale()
-    path = None
+    # 1) use a .bsp already on disk -- the data dir first, then the working dir
     for name in _EPH_CANDIDATES:
-        p = os.path.join(DATA_DIR, name)
-        if os.path.exists(p):
-            path = p
-            break
-    if path is None:
-        # download de440s.bsp on first use (into the current directory)
-        os.makedirs(DATA_DIR, exist_ok=True)
-        path = load("de440s.bsp")
-    eph = load(path)
-    return ts, eph
+        for d in (DATA_DIR, os.getcwd()):
+            p = os.path.join(d, name)
+            if os.path.exists(p):
+                return ts, load(p)
+    # 2) download it into the data dir, then open it
+    os.makedirs(DATA_DIR, exist_ok=True)
+    dest = os.path.join(DATA_DIR, "de440s.bsp")
+    try:
+        load.download(_JPL_URL, dest)
+    except Exception:
+        pass
+    if os.path.exists(dest):
+        return ts, load(dest)
+    # 3) last resort: let Skyfield fetch and open it itself
+    return ts, load("de440s.bsp")
 
 
 # planets we compute (geocentric).  Rahu/Ketu are derived from the lunar node.
