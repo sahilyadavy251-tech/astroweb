@@ -3,46 +3,77 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jyotish Studio — Vedic, KP, Lal Kitab & Nadi</title>
+<title>Kundli • Free Janam Kundli Online — Jyotish Studio</title>
 <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-<header>
-  <div class="brand">
-    <span class="om">ॐ</span>
-    <div>
-      <h1>Jyotish Studio</h1>
-      <small data-i18n="tagline">Vedic + KP + Lal Kitab + Nadi Astrology Studio</small>
+<div class="topbar">
+  <div class="row">
+    <div class="brand">
+      <span class="om">ॐ</span>
+      <div><h1>Jyotish Studio</h1><small data-i18n="tagline">Vedic + KP + Lal Kitab + Nadi Astrology</small></div>
+    </div>
+    <div class="langbtn">
+      <button data-lang="en" class="on">English</button>
+      <button data-lang="hi">हिंदी</button>
     </div>
   </div>
-  <div class="langbtn">
-    <button data-lang="en" class="on">English</button>
-    <button data-lang="hi">हिंदी</button>
-  </div>
-</header>
+</div>
+<div class="subnav"><div class="in">
+  <span class="on" data-i18n="navKundli">कुंडली / Kundli</span>
+  <span data-i18n="navBirth">BIRTH CHART</span>
+  <span data-i18n="navMatch">KUNDLI MATCHING</span>
+  <span data-i18n="navPanchang">PANCHANG</span>
+</div></div>
 
 <main>
-  <div class="card">
-    <h2 data-i18n="birthDetails">Birth Details</h2>
+  <div class="crumb"><span data-i18n="home">Home</span> › <span data-i18n="astrology">Astrology</span> › <b data-i18n="kundli">Kundli</b></div>
+  <h2 class="title" data-i18n="pageTitle">Kundli • Free Janam Kundli Online</h2>
+
+  <div class="banner">
+    <div>
+      <h2 data-i18n="bannerH">Kundli</h2>
+      <p data-i18n="bannerP">Get Your Janam Kundali</p>
+      <div class="chips">
+        <i data-i18n="chipBirth">Birth Chart</i><i data-i18n="chipDasha">Dasha Timings</i>
+        <i data-i18n="chipAshtaka">Ashtakavarga</i><i data-i18n="chipKp">KP</i>
+      </div>
+    </div>
+    <div class="art">🔯</div>
+  </div>
+
+  <p class="lead" data-i18n="pageDesc">A Janma Kundli (birth chart) maps the positions of the planets in the zodiac signs and houses at the exact time and place of birth. Enter your birth details below to generate a complete Vedic chart — divisional charts D1–D60, Vimshottari dasha, Shadbala, Ashtakavarga, yogas, KP, Lal Kitab, Nadi and more.</p>
+
+  <div class="card formcard">
+    <div class="hd">⚙ <span data-i18n="enterDetails">Enter Birth Details</span></div>
     <form id="form">
-      <div class="grid cols2" style="margin-bottom:12px">
-        <div><label data-i18n="name">Full name</label>
-          <input id="name" type="text" placeholder="Sahil Rao"></div>
-        <div><label data-i18n="place">Place of birth</label>
-          <input id="place" type="text" autocomplete="off" data-i18n-ph="searchPlace" placeholder="Search a city…">
-          <div id="sugg" style="background:#0c0f1e;border-radius:0 0 10px 10px;position:relative;z-index:5"></div>
+      <div class="grid g2" style="margin-bottom:12px">
+        <div><label data-i18n="name">Name</label><input id="name" type="text" data-i18n-ph="namePh" placeholder="Enter Your Name"></div>
+        <div><label data-i18n="gender">Gender</label>
+          <div class="radio">
+            <label><input type="radio" name="gender" value="Male" checked> <span data-i18n="male">Male</span></label>
+            <label><input type="radio" name="gender" value="Female"> <span data-i18n="female">Female</span></label>
+          </div>
         </div>
       </div>
-      <div class="grid cols4" style="margin-bottom:12px">
-        <div><label data-i18n="date">Date of birth</label><input id="dob" type="date" value="1990-05-15"></div>
-        <div><label data-i18n="time">Time of birth</label><input id="tob" type="time" value="10:30"></div>
-        <div><label data-i18n="latitude">Latitude</label><input id="lat" type="number" step="0.0001" value="28.6139"></div>
-        <div><label data-i18n="longitude">Longitude</label><input id="lon" type="number" step="0.0001" value="77.2090"></div>
+      <div class="grid g2" style="margin-bottom:12px">
+        <div><label data-i18n="dob">Birth Date</label><input id="dob" type="date" value="1990-05-15"></div>
+        <div><label data-i18n="tob">Birth Time</label><input id="tob" type="time" value="10:30"></div>
       </div>
-      <div class="grid cols2" style="align-items:end">
-        <div><label data-i18n="tz">Timezone (UTC offset)</label>
-          <input id="tz" type="number" step="0.25" value="5.5"></div>
-        <div><button class="btn" type="submit" data-i18n="calculate">Generate Chart</button></div>
+      <div style="margin-bottom:12px">
+        <label data-i18n="pob">Place of Birth</label>
+        <input id="place" type="text" autocomplete="off" data-i18n-ph="pobPh" placeholder="Start typing a city…">
+        <div id="sugg" class="sugg"></div>
+      </div>
+      <div class="grid g3" style="margin-bottom:14px">
+        <div><label data-i18n="lat">Latitude</label><input id="lat" type="number" step="0.0001" value="28.6139"></div>
+        <div><label data-i18n="lon">Longitude</label><input id="lon" type="number" step="0.0001" value="77.2090"></div>
+        <div><label data-i18n="tz">Timezone (UTC offset)</label><input id="tz" type="number" step="0.25" value="5.5"></div>
+      </div>
+      <div class="grid g2" style="align-items:end">
+        <div><label data-i18n="lang">Language</label>
+          <select id="langSel"><option value="en">English</option><option value="hi">हिंदी</option></select></div>
+        <div><button class="btn" type="submit" data-i18n="getKundli">GET KUNDLI</button></div>
       </div>
     </form>
   </div>
@@ -52,20 +83,19 @@
   <div id="results" style="display:none">
     <div class="tabs">
       <button data-tab="overview" class="on" data-i18n="tabOverview">Overview</button>
-      <button data-tab="charts" data-i18n="tabCharts">Divisional Charts</button>
+      <button data-tab="charts" data-i18n="tabCharts">Birth Chart</button>
       <button data-tab="dasha" data-i18n="tabDasha">Vimshottari Dasha</button>
       <button data-tab="shadbala" data-i18n="tabShadbala">Shadbala</button>
       <button data-tab="ashtaka" data-i18n="tabAshtaka">Ashtakavarga</button>
-      <button data-tab="yogas" data-i18n="tabYogas">Yogas & Doshas</button>
+      <button data-tab="yogas" data-i18n="tabYogas">Yogas &amp; Doshas</button>
       <button data-tab="kp" data-i18n="tabKP">KP System</button>
       <button data-tab="jaimini" data-i18n="tabJaimini">Jaimini</button>
       <button data-tab="lalkitab" data-i18n="tabLalKitab">Lal Kitab</button>
-      <button data-tab="nadi" data-i18n="tabNadi">Nadi System</button>
+      <button data-tab="nadi" data-i18n="tabNadi">Nadi</button>
       <button data-tab="numerology" data-i18n="tabNumerology">Numerology</button>
       <button data-tab="transit" data-i18n="tabTransit">Transit</button>
       <button data-tab="tarot" data-i18n="tabTarot">Tarot</button>
     </div>
-
     <div id="sec-overview" class="card section on"></div>
     <div id="sec-charts" class="card section"></div>
     <div id="sec-dasha" class="card section"></div>
@@ -77,19 +107,17 @@
     <div id="sec-lalkitab" class="card section"></div>
     <div id="sec-nadi" class="card section"></div>
     <div id="sec-numerology" class="card section"></div>
-
     <div id="sec-transit" class="card section">
-      <h2 data-i18n="tabTransit">Transit (Gochara)</h2>
-      <div class="grid cols2" style="align-items:end;margin-bottom:14px">
+      <h2 class="title" data-i18n="tabTransit">Transit (Gochara)</h2>
+      <div class="grid g2" style="align-items:end;margin-bottom:14px">
         <div><label data-i18n="transitDate">Transit date</label><input id="transitDate" type="date"></div>
         <div><button class="btn" id="transitBtn" data-i18n="showTransit">Show Transit</button></div>
       </div>
       <div id="transitBox"></div>
     </div>
-
     <div id="sec-tarot" class="card section">
-      <h2 data-i18n="tabTarot">Tarot</h2>
-      <div class="grid cols2" style="align-items:end;margin-bottom:14px">
+      <h2 class="title" data-i18n="tabTarot">Tarot</h2>
+      <div class="grid g2" style="align-items:end;margin-bottom:14px">
         <div><label data-i18n="spread">Spread</label>
           <select id="tarotSpread">
             <option value="three" data-i18n="spread3">Past / Present / Future</option>
@@ -100,15 +128,11 @@
       </div>
       <div id="tarotBox"></div>
     </div>
-
-    <div style="text-align:center;margin-top:10px">
-      <button class="btn ghost" id="printBtn" data-i18n="print">Print / Save PDF</button>
-    </div>
+    <div style="text-align:center"><button class="btn ghost" id="printBtn" data-i18n="print">Print / Save PDF</button></div>
   </div>
 
-  <div class="foot" data-i18n="footnote">Computed with the Swiss/JPL ephemeris, Lahiri ayanamsa, whole-sign bhavas and Placidus cusps.</div>
+  <div class="foot" data-i18n="footnote">Computed with the JPL/Swiss ephemeris, Lahiri ayanamsa, whole-sign bhavas and Placidus cusps.</div>
 </main>
-
 <script src="/static/js/i18n.js"></script>
 <script src="/static/js/app.js"></script>
 </body>
