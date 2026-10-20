@@ -325,7 +325,7 @@ function renderLalKitab(){
 /* -------- Nadi -------- */
 function renderNadi(){
   const n=DATA.nadi;
-  let h=`<h2 class="title">${t("tabNadi")}</h2><div class="notice">${LANG==="hi"?
+  let h=`<h2 class="title">${t("tabNadi")}</h2><a href="/nadi-bnn" class="btn" style="display:inline-block;margin-bottom:12px;text-decoration:none">${t("openBnn")} &rarr;</a><div class="notice">${LANG==="hi"?
     "पारंपरिक ताड़-पत्र नाड़ी पांडुलिपि-खोज पद्धति है; यहाँ गणना-योग्य नाड़ी अंश (D150) दिया गया है।":
     "The classical palm-leaf Nadi is a manuscript-lookup system; here we compute the derivable Nadi Amsa (D150)."}</div>`;
   h+=`<h3>${t("nadiAmsa")}</h3><table><thead><tr><th>${t("planet")}</th><th>${t("sign")}</th><th>${t("nadiDivision")}</th></tr></thead><tbody>`;
