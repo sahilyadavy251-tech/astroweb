@@ -101,6 +101,7 @@ tr:last-child td{border-bottom:0}
   <table id="sat"><thead><tr><th>#</th><th>Se</th><th>Tak</th><th>Rashi</th><th>Umar</th></tr></thead><tbody></tbody></table>
   <h3>Rahu / Ketu ki progression</h3>
   <table id="rah"><thead><tr><th>#</th><th>Se</th><th>Tak</th><th>Rashi</th><th>Umar</th></tr></thead><tbody></tbody></table>
+  <div id="progchart" style="margin-top:18px"></div>
 
   <h2>Chart ki kacchi jankari</h2>
   <div class="kv" id="chartkv"></div>
@@ -471,6 +472,57 @@ return{SIGNS,SIGNS_SA,SIGN_SH,NAK,PLANETS,SEVEN,DASHA_ORDER,DASHA_YEARS,norm360,
       $('jup').querySelector('tbody').innerHTML = progRows('Jupiter');
       $('sat').querySelector('tbody').innerHTML = progRows('Saturn');
       $('rah').querySelector('tbody').innerHTML = progRows('Rahu');
+
+      /* ---- PROGRESSION CHART (visual timeline) ---- */
+      drawProgCharts();
+
+      function drawProgCharts(){
+        var defs = [['Jupiter','Jupiter'],['Saturn','Saturn'],['Rahu','Rahu / Ketu']];
+        var SIGN_COLORS=['#c62828','#ad1457','#6a1b9a','#283593','#0277bd','#00838f',
+                         '#2e7d32','#558b2f','#f9a825','#ef6c00','#6d4c41','#455a64'];
+        var MAXA = 90;
+        var data = defs.map(function(d){
+          var pr = KV.planetProgression(chart, d[0], age);
+          return {label:d[1], rows:(pr.major||[])};
+        });
+        var W=880, L=118, Rm=18, rowH=52, top=34;
+        var H=top + data.length*rowH + 30;
+        var plotW = W - L - Rm;
+        function X(a){ return L + (Math.min(MAXA,Math.max(0,a))/MAXA)*plotW; }
+        var g='';
+        // age gridlines
+        for(var a=0;a<=MAXA;a+=10){
+          g+='<line x1="'+X(a)+'" y1="'+(top-10)+'" x2="'+X(a)+'" y2="'+(top+data.length*rowH)+'" stroke="#eee3d0" stroke-width="1"/>';
+          g+='<text x="'+X(a)+'" y="'+(top-14)+'" text-anchor="middle" font-size="11" fill="#a3906f">'+a+'</text>';
+        }
+        g+='<text x="'+(L+plotW/2)+'" y="12" text-anchor="middle" font-size="11.5" letter-spacing="1" fill="#a3906f">AGE (YEARS)</text>';
+        data.forEach(function(d,ri){
+          var y = top + ri*rowH;
+          g+='<text x="'+(L-10)+'" y="'+(y+rowH/2+5)+'" text-anchor="end" font-size="13" font-weight="700" fill="#7d2b0f">'+d.label+'</text>';
+          g+='<line x1="'+L+'" y1="'+(y+rowH/2)+'" x2="'+(L+plotW)+'" y2="'+(y+rowH/2)+'" stroke="#f4ede0" stroke-width="1"/>';
+          d.rows.forEach(function(r){
+            var x0=X(r.from), x1=X(r.to);
+            if(x1<=L || x0>=L+plotW) return;
+            var w=Math.max(1,x1-x0);
+            var col=SIGN_COLORS[((r.sign%12)+12)%12];
+            g+='<rect x="'+x0+'" y="'+(y+10)+'" width="'+w+'" height="'+(rowH-24)+'" rx="4" fill="'+col+'" opacity="0.88"/>';
+            if(w>26){
+              g+='<text x="'+((x0+x1)/2)+'" y="'+(y+rowH/2+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">'+(r.signName||'').slice(0,3)+'</text>';
+            }
+          });
+        });
+        // legend
+        var leg='<div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px">';
+        KV.SIGNS.forEach(function(sn,i){
+          leg+='<span style="font-size:11px;color:#8a7d6b"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:'+SIGN_COLORS[i]+';margin-right:3px;vertical-align:-1px"></span>'+sn+'</span>';
+        });
+        leg+='</div>';
+        var svg='<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:880px;display:block;margin:8px auto">'+g+'</svg>';
+        $('progchart').innerHTML =
+          '<h3>Progression chart &mdash; rashi over age</h3>'+
+          '<p class="note">Har patti ek grah hai; rang rashi darshata hai. Age badhne par grah agle rashi me jaata hai (retro grah peeche).</p>'+
+          svg + leg;
+      }
 
       out.hidden = false;
       out.scrollIntoView({behavior:'smooth', block:'start'});
