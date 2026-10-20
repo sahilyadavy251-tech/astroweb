@@ -5,7 +5,7 @@ import json
 import os
 from datetime import datetime
 
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, send_from_directory
 
 from engine import chart as chart_engine
 from engine import tarot as tarot_engine
@@ -99,6 +99,12 @@ def api_chart():
     except Exception as e:  # noqa
         app.logger.exception("chart error")
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/nadi-bnn")
+def nadi_bnn():
+    """Standalone Nadi (BNN) + slow-planet progression tool."""
+    return send_from_directory(os.path.join(BASE, "static"), "nadi-bnn.html")
 
 
 @app.route("/api/tarot")
