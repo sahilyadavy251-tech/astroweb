@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: astroweb
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && (python -c "from skyfield.api import load; load('de440s.bsp')" || true)
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
