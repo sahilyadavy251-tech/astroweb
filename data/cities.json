@@ -1,0 +1,1220 @@
+[
+  {
+    "name": "Delhi",
+    "region": "Delhi, India",
+    "lat": 28.6139,
+    "lon": 77.209,
+    "tz": 5.5
+  },
+  {
+    "name": "New Delhi",
+    "region": "Delhi, India",
+    "lat": 28.6139,
+    "lon": 77.209,
+    "tz": 5.5
+  },
+  {
+    "name": "Mumbai",
+    "region": "Maharashtra, India",
+    "lat": 19.076,
+    "lon": 72.8777,
+    "tz": 5.5
+  },
+  {
+    "name": "Kolkata",
+    "region": "West Bengal, India",
+    "lat": 22.5726,
+    "lon": 88.3639,
+    "tz": 5.5
+  },
+  {
+    "name": "Chennai",
+    "region": "Tamil Nadu, India",
+    "lat": 13.0827,
+    "lon": 80.2707,
+    "tz": 5.5
+  },
+  {
+    "name": "Bengaluru",
+    "region": "Karnataka, India",
+    "lat": 12.9716,
+    "lon": 77.5946,
+    "tz": 5.5
+  },
+  {
+    "name": "Hyderabad",
+    "region": "Telangana, India",
+    "lat": 17.385,
+    "lon": 78.4867,
+    "tz": 5.5
+  },
+  {
+    "name": "Ahmedabad",
+    "region": "Gujarat, India",
+    "lat": 23.0225,
+    "lon": 72.5714,
+    "tz": 5.5
+  },
+  {
+    "name": "Pune",
+    "region": "Maharashtra, India",
+    "lat": 18.5204,
+    "lon": 73.8567,
+    "tz": 5.5
+  },
+  {
+    "name": "Surat",
+    "region": "Gujarat, India",
+    "lat": 21.1702,
+    "lon": 72.8311,
+    "tz": 5.5
+  },
+  {
+    "name": "Jaipur",
+    "region": "Rajasthan, India",
+    "lat": 26.9124,
+    "lon": 75.7873,
+    "tz": 5.5
+  },
+  {
+    "name": "Lucknow",
+    "region": "Uttar Pradesh, India",
+    "lat": 26.8467,
+    "lon": 80.9462,
+    "tz": 5.5
+  },
+  {
+    "name": "Kanpur",
+    "region": "Uttar Pradesh, India",
+    "lat": 26.4499,
+    "lon": 80.3319,
+    "tz": 5.5
+  },
+  {
+    "name": "Nagpur",
+    "region": "Maharashtra, India",
+    "lat": 21.1458,
+    "lon": 79.0882,
+    "tz": 5.5
+  },
+  {
+    "name": "Indore",
+    "region": "Madhya Pradesh, India",
+    "lat": 22.7196,
+    "lon": 75.8577,
+    "tz": 5.5
+  },
+  {
+    "name": "Bhopal",
+    "region": "Madhya Pradesh, India",
+    "lat": 23.2599,
+    "lon": 77.4126,
+    "tz": 5.5
+  },
+  {
+    "name": "Patna",
+    "region": "Bihar, India",
+    "lat": 25.5941,
+    "lon": 85.1376,
+    "tz": 5.5
+  },
+  {
+    "name": "Vadodara",
+    "region": "Gujarat, India",
+    "lat": 22.3072,
+    "lon": 73.1812,
+    "tz": 5.5
+  },
+  {
+    "name": "Ludhiana",
+    "region": "Punjab, India",
+    "lat": 30.901,
+    "lon": 75.8573,
+    "tz": 5.5
+  },
+  {
+    "name": "Agra",
+    "region": "Uttar Pradesh, India",
+    "lat": 27.1767,
+    "lon": 78.0081,
+    "tz": 5.5
+  },
+  {
+    "name": "Nashik",
+    "region": "Maharashtra, India",
+    "lat": 19.9975,
+    "lon": 73.7898,
+    "tz": 5.5
+  },
+  {
+    "name": "Varanasi",
+    "region": "Uttar Pradesh, India",
+    "lat": 25.3176,
+    "lon": 82.9739,
+    "tz": 5.5
+  },
+  {
+    "name": "Amritsar",
+    "region": "Punjab, India",
+    "lat": 31.634,
+    "lon": 74.8723,
+    "tz": 5.5
+  },
+  {
+    "name": "Prayagraj",
+    "region": "Uttar Pradesh, India",
+    "lat": 25.4358,
+    "lon": 81.8463,
+    "tz": 5.5
+  },
+  {
+    "name": "Ranchi",
+    "region": "Jharkhand, India",
+    "lat": 23.3441,
+    "lon": 85.3096,
+    "tz": 5.5
+  },
+  {
+    "name": "Coimbatore",
+    "region": "Tamil Nadu, India",
+    "lat": 11.0168,
+    "lon": 76.9558,
+    "tz": 5.5
+  },
+  {
+    "name": "Jabalpur",
+    "region": "Madhya Pradesh, India",
+    "lat": 23.1815,
+    "lon": 79.9864,
+    "tz": 5.5
+  },
+  {
+    "name": "Gwalior",
+    "region": "Madhya Pradesh, India",
+    "lat": 26.2183,
+    "lon": 78.1828,
+    "tz": 5.5
+  },
+  {
+    "name": "Vijayawada",
+    "region": "Andhra Pradesh, India",
+    "lat": 16.5062,
+    "lon": 80.648,
+    "tz": 5.5
+  },
+  {
+    "name": "Jodhpur",
+    "region": "Rajasthan, India",
+    "lat": 26.2389,
+    "lon": 73.0243,
+    "tz": 5.5
+  },
+  {
+    "name": "Madurai",
+    "region": "Tamil Nadu, India",
+    "lat": 9.9252,
+    "lon": 78.1198,
+    "tz": 5.5
+  },
+  {
+    "name": "Raipur",
+    "region": "Chhattisgarh, India",
+    "lat": 21.2514,
+    "lon": 81.6296,
+    "tz": 5.5
+  },
+  {
+    "name": "Kota",
+    "region": "Rajasthan, India",
+    "lat": 25.2138,
+    "lon": 75.8648,
+    "tz": 5.5
+  },
+  {
+    "name": "Guwahati",
+    "region": "Assam, India",
+    "lat": 26.1445,
+    "lon": 91.7362,
+    "tz": 5.5
+  },
+  {
+    "name": "Chandigarh",
+    "region": "Chandigarh, India",
+    "lat": 30.7333,
+    "lon": 76.7794,
+    "tz": 5.5
+  },
+  {
+    "name": "Thiruvananthapuram",
+    "region": "Kerala, India",
+    "lat": 8.5241,
+    "lon": 76.9366,
+    "tz": 5.5
+  },
+  {
+    "name": "Kochi",
+    "region": "Kerala, India",
+    "lat": 9.9312,
+    "lon": 76.2673,
+    "tz": 5.5
+  },
+  {
+    "name": "Mysuru",
+    "region": "Karnataka, India",
+    "lat": 12.2958,
+    "lon": 76.6394,
+    "tz": 5.5
+  },
+  {
+    "name": "Bhubaneswar",
+    "region": "Odisha, India",
+    "lat": 20.2961,
+    "lon": 85.8245,
+    "tz": 5.5
+  },
+  {
+    "name": "Cuttack",
+    "region": "Odisha, India",
+    "lat": 20.4625,
+    "lon": 85.8828,
+    "tz": 5.5
+  },
+  {
+    "name": "Dehradun",
+    "region": "Uttarakhand, India",
+    "lat": 30.3165,
+    "lon": 78.0322,
+    "tz": 5.5
+  },
+  {
+    "name": "Shimla",
+    "region": "Himachal Pradesh, India",
+    "lat": 31.1048,
+    "lon": 77.1734,
+    "tz": 5.5
+  },
+  {
+    "name": "Jammu",
+    "region": "Jammu & Kashmir, India",
+    "lat": 32.7266,
+    "lon": 74.857,
+    "tz": 5.5
+  },
+  {
+    "name": "Srinagar",
+    "region": "Jammu & Kashmir, India",
+    "lat": 34.0837,
+    "lon": 74.7973,
+    "tz": 5.5
+  },
+  {
+    "name": "Panaji",
+    "region": "Goa, India",
+    "lat": 15.4909,
+    "lon": 73.8278,
+    "tz": 5.5
+  },
+  {
+    "name": "Visakhapatnam",
+    "region": "Andhra Pradesh, India",
+    "lat": 17.6868,
+    "lon": 83.2185,
+    "tz": 5.5
+  },
+  {
+    "name": "Aurangabad",
+    "region": "Maharashtra, India",
+    "lat": 19.8762,
+    "lon": 75.3433,
+    "tz": 5.5
+  },
+  {
+    "name": "Bareilly",
+    "region": "Uttar Pradesh, India",
+    "lat": 28.367,
+    "lon": 79.4304,
+    "tz": 5.5
+  },
+  {
+    "name": "Mysore",
+    "region": "Karnataka, India",
+    "lat": 12.2958,
+    "lon": 76.6394,
+    "tz": 5.5
+  },
+  {
+    "name": "Tiruchirappalli",
+    "region": "Tamil Nadu, India",
+    "lat": 10.7905,
+    "lon": 78.7047,
+    "tz": 5.5
+  },
+  {
+    "name": "Salem",
+    "region": "Tamil Nadu, India",
+    "lat": 11.6643,
+    "lon": 78.146,
+    "tz": 5.5
+  },
+  {
+    "name": "Warangal",
+    "region": "Telangana, India",
+    "lat": 17.9689,
+    "lon": 79.5941,
+    "tz": 5.5
+  },
+  {
+    "name": "Guntur",
+    "region": "Andhra Pradesh, India",
+    "lat": 16.3067,
+    "lon": 80.4365,
+    "tz": 5.5
+  },
+  {
+    "name": "Udaipur",
+    "region": "Rajasthan, India",
+    "lat": 24.5854,
+    "lon": 73.7125,
+    "tz": 5.5
+  },
+  {
+    "name": "Ajmer",
+    "region": "Rajasthan, India",
+    "lat": 26.4499,
+    "lon": 74.6399,
+    "tz": 5.5
+  },
+  {
+    "name": "Bikaner",
+    "region": "Rajasthan, India",
+    "lat": 28.0229,
+    "lon": 73.3119,
+    "tz": 5.5
+  },
+  {
+    "name": "Meerut",
+    "region": "Uttar Pradesh, India",
+    "lat": 28.9845,
+    "lon": 77.7064,
+    "tz": 5.5
+  },
+  {
+    "name": "Moradabad",
+    "region": "Uttar Pradesh, India",
+    "lat": 28.8386,
+    "lon": 78.7733,
+    "tz": 5.5
+  },
+  {
+    "name": "Aligarh",
+    "region": "Uttar Pradesh, India",
+    "lat": 27.8974,
+    "lon": 78.088,
+    "tz": 5.5
+  },
+  {
+    "name": "Gorakhpur",
+    "region": "Uttar Pradesh, India",
+    "lat": 26.7606,
+    "lon": 83.3732,
+    "tz": 5.5
+  },
+  {
+    "name": "Bikaner",
+    "region": "Rajasthan, India",
+    "lat": 28.0229,
+    "lon": 73.3119,
+    "tz": 5.5
+  },
+  {
+    "name": "Hubballi",
+    "region": "Karnataka, India",
+    "lat": 15.3647,
+    "lon": 75.124,
+    "tz": 5.5
+  },
+  {
+    "name": "Belagavi",
+    "region": "Karnataka, India",
+    "lat": 15.8497,
+    "lon": 74.4977,
+    "tz": 5.5
+  },
+  {
+    "name": "Mangaluru",
+    "region": "Karnataka, India",
+    "lat": 12.9141,
+    "lon": 74.856,
+    "tz": 5.5
+  },
+  {
+    "name": "Thrissur",
+    "region": "Kerala, India",
+    "lat": 10.5276,
+    "lon": 76.2144,
+    "tz": 5.5
+  },
+  {
+    "name": "Kollam",
+    "region": "Kerala, India",
+    "lat": 8.8932,
+    "lon": 76.6141,
+    "tz": 5.5
+  },
+  {
+    "name": "Tirunelveli",
+    "region": "Tamil Nadu, India",
+    "lat": 8.7139,
+    "lon": 77.7567,
+    "tz": 5.5
+  },
+  {
+    "name": "Siliguri",
+    "region": "West Bengal, India",
+    "lat": 26.7271,
+    "lon": 88.3953,
+    "tz": 5.5
+  },
+  {
+    "name": "Dhanbad",
+    "region": "Jharkhand, India",
+    "lat": 23.7957,
+    "lon": 86.4304,
+    "tz": 5.5
+  },
+  {
+    "name": "Jamshedpur",
+    "region": "Jharkhand, India",
+    "lat": 22.8046,
+    "lon": 86.2029,
+    "tz": 5.5
+  },
+  {
+    "name": "Asansol",
+    "region": "West Bengal, India",
+    "lat": 23.6739,
+    "lon": 86.9524,
+    "tz": 5.5
+  },
+  {
+    "name": "Bhilai",
+    "region": "Chhattisgarh, India",
+    "lat": 21.1938,
+    "lon": 81.3509,
+    "tz": 5.5
+  },
+  {
+    "name": "Rourkela",
+    "region": "Odisha, India",
+    "lat": 22.2604,
+    "lon": 84.8536,
+    "tz": 5.5
+  },
+  {
+    "name": "Noida",
+    "region": "Uttar Pradesh, India",
+    "lat": 28.5355,
+    "lon": 77.391,
+    "tz": 5.5
+  },
+  {
+    "name": "Gurugram",
+    "region": "Haryana, India",
+    "lat": 28.4595,
+    "lon": 77.0266,
+    "tz": 5.5
+  },
+  {
+    "name": "Faridabad",
+    "region": "Haryana, India",
+    "lat": 28.4089,
+    "lon": 77.3178,
+    "tz": 5.5
+  },
+  {
+    "name": "Ghaziabad",
+    "region": "Uttar Pradesh, India",
+    "lat": 28.6692,
+    "lon": 77.4538,
+    "tz": 5.5
+  },
+  {
+    "name": "Navi Mumbai",
+    "region": "Maharashtra, India",
+    "lat": 19.033,
+    "lon": 73.0297,
+    "tz": 5.5
+  },
+  {
+    "name": "Thane",
+    "region": "Maharashtra, India",
+    "lat": 19.2183,
+    "lon": 72.9781,
+    "tz": 5.5
+  },
+  {
+    "name": "Rajkot",
+    "region": "Gujarat, India",
+    "lat": 22.3039,
+    "lon": 70.8022,
+    "tz": 5.5
+  },
+  {
+    "name": "Jamnagar",
+    "region": "Gujarat, India",
+    "lat": 22.4707,
+    "lon": 70.0577,
+    "tz": 5.5
+  },
+  {
+    "name": "Bhavnagar",
+    "region": "Gujarat, India",
+    "lat": 21.7645,
+    "lon": 72.1519,
+    "tz": 5.5
+  },
+  {
+    "name": "Kolhapur",
+    "region": "Maharashtra, India",
+    "lat": 16.705,
+    "lon": 74.2433,
+    "tz": 5.5
+  },
+  {
+    "name": "Solapur",
+    "region": "Maharashtra, India",
+    "lat": 17.6599,
+    "lon": 75.9064,
+    "tz": 5.5
+  },
+  {
+    "name": "Amravati",
+    "region": "Maharashtra, India",
+    "lat": 20.9374,
+    "lon": 77.7796,
+    "tz": 5.5
+  },
+  {
+    "name": "Port Blair",
+    "region": "Andaman & Nicobar, India",
+    "lat": 11.6234,
+    "lon": 92.7265,
+    "tz": 5.5
+  },
+  {
+    "name": "Imphal",
+    "region": "Manipur, India",
+    "lat": 24.817,
+    "lon": 93.9368,
+    "tz": 5.5
+  },
+  {
+    "name": "Shillong",
+    "region": "Meghalaya, India",
+    "lat": 25.5788,
+    "lon": 91.8933,
+    "tz": 5.5
+  },
+  {
+    "name": "Aizawl",
+    "region": "Mizoram, India",
+    "lat": 23.7271,
+    "lon": 92.7176,
+    "tz": 5.5
+  },
+  {
+    "name": "Agartala",
+    "region": "Tripura, India",
+    "lat": 23.8315,
+    "lon": 91.2868,
+    "tz": 5.5
+  },
+  {
+    "name": "Kohima",
+    "region": "Nagaland, India",
+    "lat": 25.6751,
+    "lon": 94.1086,
+    "tz": 5.5
+  },
+  {
+    "name": "Itanagar",
+    "region": "Arunachal Pradesh, India",
+    "lat": 27.0844,
+    "lon": 93.6053,
+    "tz": 5.5
+  },
+  {
+    "name": "Gangtok",
+    "region": "Sikkim, India",
+    "lat": 27.3389,
+    "lon": 88.6065,
+    "tz": 5.5
+  },
+  {
+    "name": "Dispur",
+    "region": "Assam, India",
+    "lat": 26.1433,
+    "lon": 91.7898,
+    "tz": 5.5
+  },
+  {
+    "name": "Puducherry",
+    "region": "Puducherry, India",
+    "lat": 11.9416,
+    "lon": 79.8083,
+    "tz": 5.5
+  },
+  {
+    "name": "Vellore",
+    "region": "Tamil Nadu, India",
+    "lat": 12.9165,
+    "lon": 79.1325,
+    "tz": 5.5
+  },
+  {
+    "name": "Erode",
+    "region": "Tamil Nadu, India",
+    "lat": 11.341,
+    "lon": 77.7172,
+    "tz": 5.5
+  },
+  {
+    "name": "Tirupati",
+    "region": "Andhra Pradesh, India",
+    "lat": 13.6288,
+    "lon": 79.4192,
+    "tz": 5.5
+  },
+  {
+    "name": "Nellore",
+    "region": "Andhra Pradesh, India",
+    "lat": 14.4426,
+    "lon": 79.9865,
+    "tz": 5.5
+  },
+  {
+    "name": "Kurnool",
+    "region": "Andhra Pradesh, India",
+    "lat": 15.8281,
+    "lon": 78.0373,
+    "tz": 5.5
+  },
+  {
+    "name": "Kakinada",
+    "region": "Andhra Pradesh, India",
+    "lat": 16.9891,
+    "lon": 82.2475,
+    "tz": 5.5
+  },
+  {
+    "name": "Bhagalpur",
+    "region": "Bihar, India",
+    "lat": 25.2425,
+    "lon": 86.9842,
+    "tz": 5.5
+  },
+  {
+    "name": "Muzaffarpur",
+    "region": "Bihar, India",
+    "lat": 26.1197,
+    "lon": 85.391,
+    "tz": 5.5
+  },
+  {
+    "name": "Gaya",
+    "region": "Bihar, India",
+    "lat": 24.7955,
+    "lon": 84.9994,
+    "tz": 5.5
+  },
+  {
+    "name": "Ujjain",
+    "region": "Madhya Pradesh, India",
+    "lat": 23.1765,
+    "lon": 75.7885,
+    "tz": 5.5
+  },
+  {
+    "name": "Sagar",
+    "region": "Madhya Pradesh, India",
+    "lat": 23.8388,
+    "lon": 78.7378,
+    "tz": 5.5
+  },
+  {
+    "name": "Satna",
+    "region": "Madhya Pradesh, India",
+    "lat": 24.5854,
+    "lon": 80.8322,
+    "tz": 5.5
+  },
+  {
+    "name": "Mathura",
+    "region": "Uttar Pradesh, India",
+    "lat": 27.4924,
+    "lon": 77.6737,
+    "tz": 5.5
+  },
+  {
+    "name": "Haridwar",
+    "region": "Uttarakhand, India",
+    "lat": 29.9457,
+    "lon": 78.1642,
+    "tz": 5.5
+  },
+  {
+    "name": "Rishikesh",
+    "region": "Uttarakhand, India",
+    "lat": 30.0869,
+    "lon": 78.2676,
+    "tz": 5.5
+  },
+  {
+    "name": "Nainital",
+    "region": "Uttarakhand, India",
+    "lat": 29.3919,
+    "lon": 79.4542,
+    "tz": 5.5
+  },
+  {
+    "name": "Ayodhya",
+    "region": "Uttar Pradesh, India",
+    "lat": 26.7922,
+    "lon": 82.1998,
+    "tz": 5.5
+  },
+  {
+    "name": "Dwarka",
+    "region": "Gujarat, India",
+    "lat": 22.2394,
+    "lon": 68.9678,
+    "tz": 5.5
+  },
+  {
+    "name": "Somnath",
+    "region": "Gujarat, India",
+    "lat": 20.888,
+    "lon": 70.401,
+    "tz": 5.5
+  },
+  {
+    "name": "Rameswaram",
+    "region": "Tamil Nadu, India",
+    "lat": 9.2876,
+    "lon": 79.3129,
+    "tz": 5.5
+  },
+  {
+    "name": "Kathmandu",
+    "region": "Nepal",
+    "lat": 27.7172,
+    "lon": 85.324,
+    "tz": 5.75
+  },
+  {
+    "name": "Colombo",
+    "region": "Sri Lanka",
+    "lat": 6.9271,
+    "lon": 79.8612,
+    "tz": 5.5
+  },
+  {
+    "name": "Dhaka",
+    "region": "Bangladesh",
+    "lat": 23.8103,
+    "lon": 90.4125,
+    "tz": 6.0
+  },
+  {
+    "name": "Karachi",
+    "region": "Pakistan",
+    "lat": 24.8607,
+    "lon": 67.0011,
+    "tz": 5.0
+  },
+  {
+    "name": "Lahore",
+    "region": "Pakistan",
+    "lat": 31.5204,
+    "lon": 74.3587,
+    "tz": 5.0
+  },
+  {
+    "name": "Dubai",
+    "region": "UAE",
+    "lat": 25.2048,
+    "lon": 55.2708,
+    "tz": 4.0
+  },
+  {
+    "name": "Abu Dhabi",
+    "region": "UAE",
+    "lat": 24.4539,
+    "lon": 54.3773,
+    "tz": 4.0
+  },
+  {
+    "name": "Doha",
+    "region": "Qatar",
+    "lat": 25.2854,
+    "lon": 51.531,
+    "tz": 3.0
+  },
+  {
+    "name": "Riyadh",
+    "region": "Saudi Arabia",
+    "lat": 24.7136,
+    "lon": 46.6753,
+    "tz": 3.0
+  },
+  {
+    "name": "Muscat",
+    "region": "Oman",
+    "lat": 23.588,
+    "lon": 58.3829,
+    "tz": 4.0
+  },
+  {
+    "name": "Singapore",
+    "region": "Singapore",
+    "lat": 1.3521,
+    "lon": 103.8198,
+    "tz": 8.0
+  },
+  {
+    "name": "Kuala Lumpur",
+    "region": "Malaysia",
+    "lat": 3.139,
+    "lon": 101.6869,
+    "tz": 8.0
+  },
+  {
+    "name": "Bangkok",
+    "region": "Thailand",
+    "lat": 13.7563,
+    "lon": 100.5018,
+    "tz": 7.0
+  },
+  {
+    "name": "Jakarta",
+    "region": "Indonesia",
+    "lat": -6.2088,
+    "lon": 106.8456,
+    "tz": 7.0
+  },
+  {
+    "name": "Hong Kong",
+    "region": "China",
+    "lat": 22.3193,
+    "lon": 114.1694,
+    "tz": 8.0
+  },
+  {
+    "name": "Shanghai",
+    "region": "China",
+    "lat": 31.2304,
+    "lon": 121.4737,
+    "tz": 8.0
+  },
+  {
+    "name": "Beijing",
+    "region": "China",
+    "lat": 39.9042,
+    "lon": 116.4074,
+    "tz": 8.0
+  },
+  {
+    "name": "Tokyo",
+    "region": "Japan",
+    "lat": 35.6762,
+    "lon": 139.6503,
+    "tz": 9.0
+  },
+  {
+    "name": "Seoul",
+    "region": "South Korea",
+    "lat": 37.5665,
+    "lon": 126.978,
+    "tz": 9.0
+  },
+  {
+    "name": "Sydney",
+    "region": "Australia",
+    "lat": -33.8688,
+    "lon": 151.2093,
+    "tz": 10.0
+  },
+  {
+    "name": "Melbourne",
+    "region": "Australia",
+    "lat": -37.8136,
+    "lon": 144.9631,
+    "tz": 10.0
+  },
+  {
+    "name": "Perth",
+    "region": "Australia",
+    "lat": -31.9505,
+    "lon": 115.8605,
+    "tz": 8.0
+  },
+  {
+    "name": "Auckland",
+    "region": "New Zealand",
+    "lat": -36.8485,
+    "lon": 174.7633,
+    "tz": 12.0
+  },
+  {
+    "name": "London",
+    "region": "United Kingdom",
+    "lat": 51.5074,
+    "lon": -0.1278,
+    "tz": 0.0
+  },
+  {
+    "name": "Birmingham",
+    "region": "United Kingdom",
+    "lat": 52.4862,
+    "lon": -1.8904,
+    "tz": 0.0
+  },
+  {
+    "name": "Manchester",
+    "region": "United Kingdom",
+    "lat": 53.4808,
+    "lon": -2.2426,
+    "tz": 0.0
+  },
+  {
+    "name": "Leicester",
+    "region": "United Kingdom",
+    "lat": 52.6369,
+    "lon": -1.1398,
+    "tz": 0.0
+  },
+  {
+    "name": "Paris",
+    "region": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "tz": 1.0
+  },
+  {
+    "name": "Berlin",
+    "region": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "tz": 1.0
+  },
+  {
+    "name": "Frankfurt",
+    "region": "Germany",
+    "lat": 50.1109,
+    "lon": 8.6821,
+    "tz": 1.0
+  },
+  {
+    "name": "Amsterdam",
+    "region": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "tz": 1.0
+  },
+  {
+    "name": "Rome",
+    "region": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "tz": 1.0
+  },
+  {
+    "name": "Madrid",
+    "region": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "tz": 1.0
+  },
+  {
+    "name": "Zurich",
+    "region": "Switzerland",
+    "lat": 47.3769,
+    "lon": 8.5417,
+    "tz": 1.0
+  },
+  {
+    "name": "Moscow",
+    "region": "Russia",
+    "lat": 55.7558,
+    "lon": 37.6173,
+    "tz": 3.0
+  },
+  {
+    "name": "Istanbul",
+    "region": "Turkey",
+    "lat": 41.0082,
+    "lon": 28.9784,
+    "tz": 3.0
+  },
+  {
+    "name": "Cairo",
+    "region": "Egypt",
+    "lat": 30.0444,
+    "lon": 31.2357,
+    "tz": 2.0
+  },
+  {
+    "name": "Nairobi",
+    "region": "Kenya",
+    "lat": -1.2921,
+    "lon": 36.8219,
+    "tz": 3.0
+  },
+  {
+    "name": "Johannesburg",
+    "region": "South Africa",
+    "lat": -26.2041,
+    "lon": 28.0473,
+    "tz": 2.0
+  },
+  {
+    "name": "Cape Town",
+    "region": "South Africa",
+    "lat": -33.9249,
+    "lon": 18.4241,
+    "tz": 2.0
+  },
+  {
+    "name": "Lagos",
+    "region": "Nigeria",
+    "lat": 6.5244,
+    "lon": 3.3792,
+    "tz": 1.0
+  },
+  {
+    "name": "New York",
+    "region": "USA",
+    "lat": 40.7128,
+    "lon": -74.006,
+    "tz": -5.0
+  },
+  {
+    "name": "Jersey City",
+    "region": "USA",
+    "lat": 40.7178,
+    "lon": -74.0431,
+    "tz": -5.0
+  },
+  {
+    "name": "Boston",
+    "region": "USA",
+    "lat": 42.3601,
+    "lon": -71.0589,
+    "tz": -5.0
+  },
+  {
+    "name": "Washington DC",
+    "region": "USA",
+    "lat": 38.9072,
+    "lon": -77.0369,
+    "tz": -5.0
+  },
+  {
+    "name": "Atlanta",
+    "region": "USA",
+    "lat": 33.749,
+    "lon": -84.388,
+    "tz": -5.0
+  },
+  {
+    "name": "Chicago",
+    "region": "USA",
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "tz": -6.0
+  },
+  {
+    "name": "Dallas",
+    "region": "USA",
+    "lat": 32.7767,
+    "lon": -96.797,
+    "tz": -6.0
+  },
+  {
+    "name": "Houston",
+    "region": "USA",
+    "lat": 29.7604,
+    "lon": -95.3698,
+    "tz": -6.0
+  },
+  {
+    "name": "Denver",
+    "region": "USA",
+    "lat": 39.7392,
+    "lon": -104.9903,
+    "tz": -7.0
+  },
+  {
+    "name": "Phoenix",
+    "region": "USA",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "tz": -7.0
+  },
+  {
+    "name": "Los Angeles",
+    "region": "USA",
+    "lat": 34.0522,
+    "lon": -118.2437,
+    "tz": -8.0
+  },
+  {
+    "name": "San Francisco",
+    "region": "USA",
+    "lat": 37.7749,
+    "lon": -122.4194,
+    "tz": -8.0
+  },
+  {
+    "name": "Seattle",
+    "region": "USA",
+    "lat": 47.6062,
+    "lon": -122.3321,
+    "tz": -8.0
+  },
+  {
+    "name": "Toronto",
+    "region": "Canada",
+    "lat": 43.6532,
+    "lon": -79.3832,
+    "tz": -5.0
+  },
+  {
+    "name": "Vancouver",
+    "region": "Canada",
+    "lat": 49.2827,
+    "lon": -123.1207,
+    "tz": -8.0
+  },
+  {
+    "name": "Sao Paulo",
+    "region": "Brazil",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "tz": -3.0
+  },
+  {
+    "name": "Buenos Aires",
+    "region": "Argentina",
+    "lat": -34.6037,
+    "lon": -58.3816,
+    "tz": -3.0
+  },
+  {
+    "name": "Mexico City",
+    "region": "Mexico",
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "tz": -6.0
+  }
+]
