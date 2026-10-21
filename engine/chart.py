@@ -224,6 +224,7 @@ def build_chart(name, year, month, day, hour, minute, second,
     result["golden"] = X.golden_period(result)
     result["hora"] = X.hora(year, month, day, lat, lon, tz_offset, hour, minute)
     result["chalit"] = X.chalit(result)
+    result["loshu"] = X.loshu(day, month, year)
 
     return result
 
