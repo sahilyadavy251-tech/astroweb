@@ -368,7 +368,62 @@ function renderNumerology(){
     ${box(t("expression")+" ("+t("pythagorean")+")",n.expression_pythagorean)}
     ${box(t("expression")+" ("+t("chaldean")+")",n.expression_chaldean)}
     ${box(t("soulUrge"),n.soul_urge)}${box(t("personality"),n.personality)}
-    ${box(t("personalYear"),n.personal_year)}</div>`;
+    ${box(t("personalYear"),n.personal_year)}</div>` + loshuSection();
+}
+
+/* -------- Lo Shu grid -------- */
+function loshuSection(){
+  const l=DATA.loshu; if(!l) return "";
+  const HI=LANG==="hi";
+  const CELL=l.cell;
+  let grid="";
+  for(let r=0;r<3;r++) for(let c=0;c<3;c++){
+    const num=Object.keys(CELL).find(n=>CELL[n][0]===r && CELL[n][1]===c);
+    const cnt=l.counts[num]||0;
+    grid+=`<div class="cell ${cnt?"has":"off"}">
+      <div class="n">${num}</div>
+      <div class="dots">${cnt?("\u25CF".repeat(Math.min(cnt,6))):""}</div>
+      <div class="pl">${plName(l.planet[num])}</div>
+      <div class="el">${esc(l.element[num])}</div></div>`;
+  }
+  let h=`<h3>${HI?"लो शू ग्रिड (Lo Shu Grid)":"Lo Shu Grid"}</h3>`;
+  h+=`<p class="note">${HI?"जन्म तिथि के अंकों (0 छोड़कर) से 3×3 ग्रिड बनता है। हर अंक की संख्या गिनी जाती है।":"The 3×3 grid is built from the birth-date digits (zeros are dropped), counting how many times each digit 1-9 appears."}</p>`;
+  h+=`<div class="stats" style="grid-template-columns:repeat(3,1fr)">
+    <div class="stat"><b>${l.mulank}</b><span>${HI?"मूलांक":"Mulank (root)"} · ${plName(l.planet[l.mulank])}</span></div>
+    <div class="stat"><b>${l.bhagyank}</b><span>${HI?"भाग्यांक":"Bhagyank (destiny)"} · ${plName(l.planet[l.bhagyank])}</span></div>
+    <div class="stat"><b>${l.present}/9</b><span>${HI?"ग्रिड भरा":"Grid filled"} · ${l.missing.length} ${HI?"अंक गायब":"missing"}</span></div></div>`;
+  h+=`<div class="loshu">${grid}</div>`;
+  h+=`<div class="legend" style="margin-bottom:10px"><span>● = ${HI?"अंक कितनी बार आया":"how many times the digit appears"}</span></div>`;
+
+  h+=`<h3>${HI?"अंक गणना":"Digit count"}</h3><div class="loshu-side">`;
+  for(let n=1;n<=9;n++){
+    const cnt=l.counts[n]||0;
+    h+=`<div class="ls-row"><span>${n} · ${plName(l.planet[n])}</span><b>${cnt}</b></div>`;
+  }
+  h+=`</div>`;
+
+  h+=`<h3>${HI?"प्लेन एवं एरो (Planes &amp; arrows)":"Planes &amp; arrows"}</h3>`;
+  h+=`<div style="overflow:auto"><table><thead><tr><th>${HI?"प्लेन":"Plane"}</th><th>${HI?"अंक":"Digits"}</th><th>${HI?"स्थिति":"State"}</th></tr></thead><tbody>`;
+  l.lines.forEach(x=>{
+    const badge = x.state==="full"?`<span class="pill good">${HI?"एरो (पूर्ण)":"ARROW (full)"}</span>`
+      : x.state==="partial"?`<span class="pill">${HI?"आंशिक":"partial"}</span>`
+      : `<span class="pill bad">${HI?"खाली":"empty"}</span>`;
+    h+=`<tr><td><b>${esc(x.name)}</b></td><td>${x.digits.join("-")}</td><td>${x.present}/3 ${badge}</td></tr>`;
+  });
+  h+=`</tbody></table></div>`;
+
+  h+=`<h3>${HI?"गायब अंक":"Missing numbers"}</h3><div>`;
+  h+= l.missing.length? l.missing.map(n=>`<span class="pill bad">${n} · ${plName(l.planet[n])}</span>`).join("")
+      : `<span class="pill good">${HI?"कोई नहीं — ग्रिड पूरा":"None — the grid is complete"}</span>`;
+  h+=`</div>`;
+
+  h+=`<h3>${HI?"अंक अर्थ (संदर्भ)":"Number meanings (reference)"}</h3><div style="overflow:auto"><table>
+    <thead><tr><th>${HI?"अंक":"No."}</th><th>${t("planet")}</th><th>${HI?"तत्व":"Element"}</th><th>${HI?"दिशा":"Direction"}</th><th>${HI?"दर्शाता है":"Governs"}</th></tr></thead><tbody>`;
+  for(let n=1;n<=9;n++){
+    h+=`<tr><td><b>${n}</b></td><td>${plName(l.planet[n])}</td><td>${esc(l.element[n])}</td><td>${esc(l.direction[n])}</td><td class="muted">${esc(l.governs[n])}</td></tr>`;
+  }
+  h+=`</tbody></table></div>`;
+  return h;
 }
 
 /* -------- Transit -------- */
