@@ -135,3 +135,16 @@ details.adv[open] summary{margin-bottom:4px}
 
 .subnav a{color:#fff;text-decoration:none;opacity:.9}
 .subnav a:hover{opacity:1;border-bottom:2px solid var(--gold);padding-bottom:6px}
+
+/* Lo Shu grid */
+.loshu{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:330px;margin:12px auto}
+.loshu .cell{border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;background:#fff}
+.loshu .cell.has{background:var(--purple-l);border-color:#d9bce8}
+.loshu .cell.off{opacity:.45}
+.loshu .cell .n{font-size:22px;font-weight:800;color:var(--purple-ink);line-height:1}
+.loshu .cell .dots{font-size:11px;letter-spacing:2px;color:var(--gold);height:15px;line-height:15px}
+.loshu .cell .pl{font-size:11px;color:#5b4b66}
+.loshu .cell .el{font-size:9.5px;color:#a3906f}
+.loshu-side{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;max-width:520px}
+.loshu-side .ls-row{display:flex;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px;background:#fff}
+.loshu-side .ls-row b{color:var(--purple-ink)}
