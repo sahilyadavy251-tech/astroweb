@@ -218,3 +218,5 @@ CHARA_KARAKAS = [
     ("MK", "Matrikaraka"), ("PiK", "Pitrikaraka"), ("PK", "Putrakaraka"),
     ("GK", "Gnatikaraka"), ("DK", "Darakaraka"),
 ]
+
+PLANET_HI = PLANETS_HI   # alias
