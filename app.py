@@ -16,6 +16,13 @@ app = Flask(__name__, static_folder="static", template_folder="templates")
 with open(os.path.join(BASE, "data", "cities.json"), encoding="utf-8") as f:
     CITIES = json.load(f)
 
+# warm the ephemeris at startup so the first chart request is fast
+try:
+    from engine import ephemeris as _eph
+    _eph._load()
+except Exception:
+    pass
+
 
 def sanitize(obj):
     """Recursively convert numpy scalars / arrays to plain Python types."""
