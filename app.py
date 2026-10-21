@@ -108,6 +108,36 @@ def api_chart():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/matching", methods=["POST"])
+def api_matching():
+    """Ashtakoot Guna Milan between two birth charts."""
+    try:
+        d = request.get_json(force=True) or {}
+        a, b = d.get("person1") or {}, d.get("person2") or {}
+        ca = chart_engine.build_chart(a.get("name", ""), int(a["year"]), int(a["month"]), int(a["day"]),
+                            int(a.get("hour", 0)), int(a.get("minute", 0)), 0,
+                            float(a.get("tz_offset", 5.5)), float(a.get("lat", 0)),
+                            float(a.get("lon", 0)), a.get("place", ""))
+        cb = chart_engine.build_chart(b.get("name", ""), int(b["year"]), int(b["month"]), int(b["day"]),
+                            int(b.get("hour", 0)), int(b.get("minute", 0)), 0,
+                            float(b.get("tz_offset", 5.5)), float(b.get("lat", 0)),
+                            float(b.get("lon", 0)), b.get("place", ""))
+        from engine import extras as X
+        res = X.gun_milan(ca, cb)
+        res["name_a"] = a.get("name", "")
+        res["name_b"] = b.get("name", "")
+        res["details_a"] = {"date": ca["meta"].get("local_datetime"), "place": a.get("place", "")}
+        res["details_b"] = {"date": cb["meta"].get("local_datetime"), "place": b.get("place", "")}
+        return jsonify(res)
+    except Exception as e:                       # noqa: BLE001
+        return jsonify({"error": str(e)}), 400
+
+
+@app.route("/matching")
+def matching_page():
+    return render_template("matching.html")
+
+
 @app.route("/kundli")
 def kundli():
     """Dedicated result page (opened after the birth details are submitted)."""
