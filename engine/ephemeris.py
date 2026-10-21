@@ -145,6 +145,21 @@ def build_time(year, month, day, hour, minute, second=0.0):
     return ts.utc(year, month, day, hour, minute, second)
 
 
+def compute_positions_full(t):
+    """Longitude AND latitude (tropical, of date) in a single pass.
+
+    Only the bodies the engine actually uses (Sun..Saturn) plus the nodes --
+    the outer planets are skipped, which keeps the chart fast.
+    """
+    out = {}
+    for name in ("Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"):
+        out[name] = geocentric_ecl(name, t)
+    rahu = mean_node(t.tt)
+    out["Rahu"] = (rahu, 0.0)
+    out["Ketu"] = (norm360(rahu + 180.0), 0.0)
+    return out
+
+
 def compute_positions(t):
     """Return tropical ecliptic longitudes (of date) for all planets.
 
@@ -279,30 +294,42 @@ def geocentric_ecl(body_name: str, t):
     return norm360(lon.degrees), lat.degrees
 
 
-def sun_times(year, month, day, lat, lon, tz_offset_hours=0.0):
-    """Return (sunrise, sunset) as Skyfield Times for the local civil day."""
-    from skyfield import almanac
-    from skyfield.api import wgs84
-    ts, eph = _load()
-    topos = wgs84.latlon(lat, lon)
-    # search window: local midnight +/- 1 day in UTC
-    t0 = ts.utc(year, month, day, -tz_offset_hours)
-    t1 = ts.utc(year, month, day + 1, -tz_offset_hours)
-    f = almanac.sunrise_sunset(eph, topos)
-    times, events = almanac.find_discrete(t0, t1, f)
-    sr = ss = None
-    for tm, ev in zip(times, events):
-        if ev == 1 and sr is None:
-            sr = tm
-        elif ev == 0 and sr is not None:
-            ss = tm
-            break
-    if sr is None:
-        for tm, ev in zip(times, events):
-            if ev == 1:
-                sr = tm
-            elif ev == 0:
-                ss = tm
+def sun_times(year, month, day, lat, lon, tz_offset=0.0):
+    """Sunrise & sunset for the local civil day, as naive UTC datetimes.
+
+    NOAA approximation (~1 minute) -- avoids a costly almanac search.
+    """
+    import math
+    from datetime import datetime, timedelta
+    d0 = datetime(year, month, day)
+    doy = (d0 - datetime(year, 1, 1)).days + 1
+    lng_hour = lon / 15.0
+    zenith = math.radians(90.833)  # official refraction + solar disc
+
+    def event(is_rise):
+        tt = doy + ((6.0 if is_rise else 18.0) - lng_hour) / 24.0
+        M = (0.9856 * tt) - 3.289
+        L = M + (1.916 * math.sin(math.radians(M)) + 0.020 * math.sin(math.radians(2 * M)) + 282.634) % 360
+        L = L % 360
+        RA = math.degrees(math.atan(0.91764 * math.tan(math.radians(L)))) % 360
+        Lq = (math.floor(L / 90.0)) * 90.0
+        RAq = (math.floor(RA / 90.0)) * 90.0
+        RA = (RA + (Lq - RAq)) / 15.0
+        sin_dec = 0.39782 * math.sin(math.radians(L))
+        cos_dec = math.cos(math.asin(sin_dec))
+        cos_h = (math.cos(zenith) - sin_dec * math.sin(math.radians(lat))) / (cos_dec * math.cos(math.radians(lat)))
+        if cos_h > 1 or cos_h < -1:
+            return None  # polar day/night
+        H = (360.0 - math.degrees(math.acos(cos_h))) if is_rise else math.degrees(math.acos(cos_h))
+        H /= 15.0
+        T = H + RA - (0.06571 * tt) - 6.622
+        UT = (T - lng_hour) % 24.0
+        return UT
+
+    base = datetime(year, month, day)          # UT of the event is measured from 00:00 UT
+    rise, sett = event(True), event(False)
+    sr = (base + timedelta(hours=rise)) if rise is not None else None
+    ss = (base + timedelta(hours=sett)) if sett is not None else None
     return sr, ss
 
 
@@ -332,7 +359,7 @@ def find_sun_sign_entry(target_sign: int, t_before, ts=None):
     # first estimate: days since the entry (Sun covers ~0.9856 deg/day)
     t = ts.tt_jd(t_before.tt - diff(t_before) / _MEAN_SUN_RATE)
     # refine -- the Sun's true rate varies a little through the year
-    for _ in range(4):
+    for _ in range(3):
         e = diff(t)
         if e > 180.0:      # we landed *before* the entry -> move forward
             e -= 360.0
