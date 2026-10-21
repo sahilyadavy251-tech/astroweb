@@ -108,6 +108,12 @@ def api_chart():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/kundli")
+def kundli():
+    """Dedicated result page (opened after the birth details are submitted)."""
+    return render_template("kundli.html")
+
+
 @app.route("/nadi-bnn")
 def nadi_bnn():
     """Standalone Nadi (BNN) + slow-planet progression tool."""
