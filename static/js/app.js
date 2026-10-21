@@ -1,5 +1,5 @@
 /* Home page: birth-details form -> navigates to the dedicated /kundli page */
-let LANG = "en";
+/* NB: LANG is declared in i18n.js (shared) */
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>document.querySelectorAll(s);
 function esc(s){ return String(s==null?"":s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
