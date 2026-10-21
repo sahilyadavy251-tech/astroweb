@@ -218,6 +218,13 @@ def build_chart(name, year, month, day, hour, minute, second,
     result["numerology"] = NU.compute(name or "", day, month, year,
                                       (now or datetime(2026, 10, 20)).year)
 
+    # ---- extras: Ishta Devta, Golden period, Hora, Bhava Chalit ----
+    from . import extras as X
+    result["ishta_devta"] = X.ishta_devta(result)
+    result["golden"] = X.golden_period(result)
+    result["hora"] = X.hora(year, month, day, lat, lon, tz_offset, hour, minute)
+    result["chalit"] = X.chalit(result)
+
     return result
 
 
