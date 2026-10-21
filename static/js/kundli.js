@@ -7,7 +7,8 @@ const PL_HI = {Sun:"सूर्य",Moon:"चन्द्र",Mars:"मंग�
 const PL_ABBR = {Sun:"Su",Moon:"Mo",Mars:"Ma",Mercury:"Me",Jupiter:"Ju",Venus:"Ve",Saturn:"Sa",Rahu:"Ra",Ketu:"Ke",Ascendant:"Asc"};
 
 const P = new URLSearchParams(location.search);
-let LANG = P.get("lang")==="hi" ? "hi" : "en";
+/* NB: LANG is declared in i18n.js (shared) -- assign, don't re-declare */
+LANG = P.get("lang")==="hi" ? "hi" : "en";
 let DATA = null, CVARGA = 1, CSTYLE = "north";
 
 const $ = (s)=>document.querySelector(s);
