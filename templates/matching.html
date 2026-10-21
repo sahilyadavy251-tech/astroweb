@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kundli Matching — Gun Milan · Jyotish Studio</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="row">
+    <div class="brand">
+      <span class="om">ॐ</span>
+      <div><h1>Jyotish Studio</h1><small data-i18n="tagline">Vedic + KP + Lal Kitab + Nadi Astrology</small></div>
+    </div>
+    <div class="langbtn">
+      <button data-lang="en" class="on">English</button>
+      <button data-lang="hi">हिंदी</button>
+    </div>
+  </div>
+</div>
+<div class="subnav"><div class="in">
+  <a href="/" data-i18n="newKundli">← New Kundli</a>
+  <a href="/nadi-bnn" data-i18n="navBnn">NADI (BNN) →</a>
+</div></div>
+
+<main>
+  <div class="crumb"><span data-i18n="home">Home</span> › <span data-i18n="astrology">Astrology</span> › <b data-i18n="tabMatch">Kundli Matching</b></div>
+  <h2 class="title" data-i18n="matchTitle">Kundli Matching — Gun Milan (Ashtakoot, 36 points)</h2>
+  <p class="lead" data-i18n="matchDesc">Enter the birth details of both people. The chart compares the Moon nakshatras to score the eight kootas — Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot and Nadi — out of 36 points.</p>
+
+  <div class="card formcard">
+    <div class="hd">♂ <span data-i18n="person1">Person 1 — Varan (Groom)</span></div>
+    <div class="grid g2" style="margin-bottom:12px">
+      <div><label data-i18n="name">Name</label><input id="n1" type="text" data-i18n-ph="namePh" placeholder="Enter Your Name"></div>
+      <div><label data-i18n="dob">Birth Date</label><input id="d1" type="date" value="1995-05-15"></div>
+    </div>
+    <div class="grid g2" style="margin-bottom:12px">
+      <div><label data-i18n="tob">Birth Time</label><input id="t1" type="time" value="10:30"></div>
+      <div><label data-i18n="pob">Place of Birth</label>
+        <input id="p1" type="text" autocomplete="off" data-i18n-ph="pobPh" placeholder="Start typing a city…">
+        <div id="s1" class="sugg"></div></div>
+    </div>
+    <input type="hidden" id="la1" value="28.6139"><input type="hidden" id="lo1" value="77.2090"><input type="hidden" id="tz1" value="5.5">
+  </div>
+
+  <div class="card formcard">
+    <div class="hd">♀ <span data-i18n="person2">Person 2 — Vadhu (Bride)</span></div>
+    <div class="grid g2" style="margin-bottom:12px">
+      <div><label data-i18n="name">Name</label><input id="n2" type="text" data-i18n-ph="namePh" placeholder="Enter Your Name"></div>
+      <div><label data-i18n="dob">Birth Date</label><input id="d2" type="date" value="1995-08-20"></div>
+    </div>
+    <div class="grid g2" style="margin-bottom:12px">
+      <div><label data-i18n="tob">Birth Time</label><input id="t2" type="time" value="14:15"></div>
+      <div><label data-i18n="pob">Place of Birth</label>
+        <input id="p2" type="text" autocomplete="off" data-i18n-ph="pobPh" placeholder="Start typing a city…">
+        <div id="s2" class="sugg"></div></div>
+    </div>
+    <input type="hidden" id="la2" value="28.6139"><input type="hidden" id="lo2" value="77.2090"><input type="hidden" id="tz2" value="5.5">
+  </div>
+
+  <div class="card" style="text-align:center">
+    <button class="btn" id="matchBtn" data-i18n="matchBtn">MATCH KUNDLI</button>
+  </div>
+
+  <div id="loader" class="loader"><div class="spin"></div><div data-i18n="calculating">Casting your chart…</div></div>
+  <div id="errbox" style="display:none" class="card"><div class="err" id="errmsg"></div></div>
+  <div id="out"></div>
+
+  <div class="foot" data-i18n="footnote">Computed with the JPL/Swiss ephemeris, Lahiri ayanamsa, whole-sign bhavas and Placidus cusps.</div>
+</main>
+<script src="/static/js/i18n.js"></script>
+<script src="/static/js/matching.js"></script>
+</body>
+</html>
