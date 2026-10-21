@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kundli — Jyotish Studio</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="row">
+    <div class="brand">
+      <span class="om">ॐ</span>
+      <div><h1>Jyotish Studio</h1><small data-i18n="tagline">Vedic + KP + Lal Kitab + Nadi Astrology</small></div>
+    </div>
+    <div class="langbtn">
+      <button data-lang="en" class="on">English</button>
+      <button data-lang="hi">हिंदी</button>
+    </div>
+  </div>
+</div>
+<div class="subnav"><div class="in">
+  <a href="/" data-i18n="newKundli">← New Kundli</a>
+  <a href="/nadi-bnn" data-i18n="navBnn">NADI (BNN) →</a>
+</div></div>
+
+<main>
+  <div id="loader" class="loader on"><div class="spin"></div><div data-i18n="calculating">Casting your chart…</div></div>
+  <div id="errbox" style="display:none" class="card"><div class="err" id="errmsg"></div>
+    <a href="/" class="btn" data-i18n="newKundli">← New Kundli</a></div>
+
+  <div id="results" style="display:none">
+    <div id="summary" class="card"></div>
+    <div class="tabs">
+      <button data-tab="overview" class="on" data-i18n="tabOverview">Overview</button>
+      <button data-tab="charts" data-i18n="tabCharts">Birth Chart</button>
+      <button data-tab="dasha" data-i18n="tabDasha">Vimshottari Dasha</button>
+      <button data-tab="shadbala" data-i18n="tabShadbala">Shadbala</button>
+      <button data-tab="ashtaka" data-i18n="tabAshtaka">Ashtakavarga</button>
+      <button data-tab="yogas" data-i18n="tabYogas">Yogas &amp; Doshas</button>
+      <button data-tab="kp" data-i18n="tabKP">KP System</button>
+      <button data-tab="jaimini" data-i18n="tabJaimini">Jaimini</button>
+      <button data-tab="lalkitab" data-i18n="tabLalKitab">Lal Kitab</button>
+      <button data-tab="nadi" data-i18n="tabNadi">Nadi</button>
+      <button data-tab="numerology" data-i18n="tabNumerology">Numerology</button>
+      <button data-tab="transit" data-i18n="tabTransit">Transit</button>
+      <button data-tab="tarot" data-i18n="tabTarot">Tarot</button>
+    </div>
+    <div id="sec-overview" class="card section on"></div>
+    <div id="sec-charts" class="card section"></div>
+    <div id="sec-dasha" class="card section"></div>
+    <div id="sec-shadbala" class="card section"></div>
+    <div id="sec-ashtaka" class="card section"></div>
+    <div id="sec-yogas" class="card section"></div>
+    <div id="sec-kp" class="card section"></div>
+    <div id="sec-jaimini" class="card section"></div>
+    <div id="sec-lalkitab" class="card section"></div>
+    <div id="sec-nadi" class="card section"></div>
+    <div id="sec-numerology" class="card section"></div>
+    <div id="sec-transit" class="card section">
+      <h2 class="title" data-i18n="tabTransit">Transit (Gochara)</h2>
+      <div class="grid g2" style="align-items:end;margin-bottom:14px">
+        <div><label data-i18n="transitDate">Transit date</label><input id="transitDate" type="date"></div>
+        <div><button class="btn" id="transitBtn" data-i18n="showTransit">Show Transit</button></div>
+      </div>
+      <div id="transitBox"></div>
+    </div>
+    <div id="sec-tarot" class="card section">
+      <h2 class="title" data-i18n="tabTarot">Tarot</h2>
+      <div class="grid g2" style="align-items:end;margin-bottom:14px">
+        <div><label data-i18n="spread">Spread</label>
+          <select id="tarotSpread">
+            <option value="three" data-i18n="spread3">Past / Present / Future</option>
+            <option value="career" data-i18n="spreadCareer">Situation / Action / Outcome</option>
+            <option value="celtic" data-i18n="spreadCeltic">Celtic Cross (10)</option>
+          </select></div>
+        <div><button class="btn" id="tarotBtn" data-i18n="drawCards">Draw Cards</button></div>
+      </div>
+      <div id="tarotBox"></div>
+    </div>
+    <div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="/" class="btn ghost" style="text-decoration:none" data-i18n="newKundli">← New Kundli</a>
+      <button class="btn ghost" id="printBtn" data-i18n="print">Print / Save PDF</button>
+    </div>
+  </div>
+
+  <div class="foot" data-i18n="footnote">Computed with the JPL/Swiss ephemeris, Lahiri ayanamsa, whole-sign bhavas and Placidus cusps.</div>
+</main>
+<script src="/static/js/i18n.js"></script>
+<script src="/static/js/kundli.js"></script>
+</body>
+</html>
