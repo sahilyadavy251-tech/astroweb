@@ -1,0 +1,23 @@
+# Keeps the free Render instance awake (Render spins a free service down
+# after ~15 minutes of inactivity).  Runs every 5 minutes from GitHub Actions,
+# which is free for public repositories.
+name: Keep the site awake
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping Jyotish Studio
+        run: |
+          for i in 1 2 3; do
+            code=$(curl -sS -m 100 -o /dev/null -w "%{http_code}" "https://astroweb-9eyl.onrender.com/" || echo "000")
+            echo "attempt $i -> HTTP $code"
+            [ "$code" = "200" ] && break
+            sleep 20
+          done
