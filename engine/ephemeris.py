@@ -298,34 +298,30 @@ def sun_sidereal_lon(t):
     return norm360(lon - lahiri_ayanamsa(t.tt))
 
 
+_MEAN_SUN_RATE = 0.98564736  # degrees per day
+
+
 def find_sun_sign_entry(target_sign: int, t_before, ts=None):
     """Most recent time (<= t_before) when sidereal Sun entered ``target_sign``.
 
     ``target_sign`` 0..11 (0 = Aries).  Returns a Skyfield Time.
+
+    Uses a Newton-style estimate from the Sun's mean motion -- only a handful
+    of ephemeris evaluations instead of a long day-by-day scan.
     """
     if ts is None:
         ts, _ = _load()
     target = target_sign * 30.0
 
     def diff(t):
-        d = (sun_sidereal_lon(t) - target) % 360.0
-        return d  # 0 at entry, grows afterwards
+        return (sun_sidereal_lon(t) - target) % 360.0  # 0 at the entry, grows after
 
-    # step back until diff wraps (i.e. we passed the previous entry)
-    step = 2.0  # days
-    t_hi = t_before
-    t_lo = ts.tt_jd(t_before.tt - step)
-    # advance back up to ~400 days
-    n = 0
-    while diff(t_lo) < diff(t_hi) and n < 400:
-        t_hi = t_lo
-        t_lo = ts.tt_jd(t_lo.tt - step)
-        n += 1
-    # now bisect between t_lo (before entry) and t_hi (after entry)
-    for _ in range(60):
-        tm = ts.tt_jd((t_lo.tt + t_hi.tt) / 2.0)
-        if diff(tm) > diff(t_hi):
-            t_lo = tm
-        else:
-            t_hi = tm
-    return t_hi
+    # first estimate: days since the entry (Sun covers ~0.9856 deg/day)
+    t = ts.tt_jd(t_before.tt - diff(t_before) / _MEAN_SUN_RATE)
+    # refine -- the Sun's true rate varies a little through the year
+    for _ in range(4):
+        e = diff(t)
+        if e > 180.0:      # we landed *before* the entry -> move forward
+            e -= 360.0
+        t = ts.tt_jd(t.tt - e / _MEAN_SUN_RATE)
+    return t
