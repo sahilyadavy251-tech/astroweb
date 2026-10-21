@@ -361,3 +361,75 @@ def chalit(chart):
         planets[p] = {"house": h, "rashi_house": rh, "shifted": h != rh,
                       "name_hi": C.PLANET_HI.get(p, p)}
     return {"cusps": {str(i): round(c[i], 4) for i in range(1, 13)}, "planets": planets}
+
+
+# ------------------------------------------------------------------ #
+#  Lo Shu Grid (numerology)
+# ------------------------------------------------------------------ #
+LOSHU_CELL = {4: (0, 0), 9: (0, 1), 2: (0, 2), 3: (1, 0), 5: (1, 1),
+              7: (1, 2), 8: (2, 0), 1: (2, 1), 6: (2, 2)}
+NUM_PLANET = {1: "Sun", 2: "Moon", 3: "Jupiter", 4: "Rahu", 5: "Mercury",
+              6: "Venus", 7: "Ketu", 8: "Saturn", 9: "Mars"}
+NUM_ELEMENT = {1: "Water", 2: "Earth", 3: "Wood", 4: "Wood", 5: "Earth",
+               6: "Metal", 7: "Metal", 8: "Earth", 9: "Fire"}
+NUM_DIR = {1: "North", 2: "South-West", 3: "East", 4: "South-East", 5: "Centre",
+           6: "North-West", 7: "West", 8: "North-East", 9: "South"}
+NUM_GOVERNS = {1: "Self, career, initiative", 2: "Emotion, relationships",
+               3: "Memory, communication, learning", 4: "Method, discipline, stability",
+               5: "Balance, adaptability", 6: "Home, responsibility, money",
+               7: "Introspection, analysis, trust", 8: "Wealth, patience, endurance",
+               9: "Ambition, energy, recognition"}
+LOSHU_LINES = [
+    {"name": "Mental plane", "digits": [4, 9, 2], "kind": "row"},
+    {"name": "Emotional plane", "digits": [3, 5, 7], "kind": "row"},
+    {"name": "Practical plane", "digits": [8, 1, 6], "kind": "row"},
+    {"name": "Plane of thought", "digits": [4, 3, 8], "kind": "col"},
+    {"name": "Plane of will", "digits": [9, 5, 1], "kind": "col"},
+    {"name": "Plane of action", "digits": [2, 7, 6], "kind": "col"},
+    {"name": "Plane of compassion", "digits": [4, 5, 6], "kind": "diag"},
+    {"name": "Plane of sensitivity", "digits": [2, 5, 8], "kind": "diag"},
+]
+
+
+def _reduce1(n):
+    n = abs(int(round(n)))
+    while n > 9:
+        n = sum(int(c) for c in str(n))
+    return n
+
+
+def _loshu_lines(counts):
+    out = []
+    for ln in LOSHU_LINES:
+        present = sum(1 for d in ln["digits"] if counts.get(d, 0) > 0)
+        out.append({"name": ln["name"], "digits": ln["digits"], "kind": ln["kind"],
+                    "present": present,
+                    "state": "full" if present == 3 else ("empty" if present == 0 else "partial")})
+    return out
+
+
+def loshu(day, month, year):
+    """Lo Shu 3x3 grid from the birth-date digits (zeros are not placed)."""
+    dd, mm, yy = "%02d" % day, "%02d" % month, str(year)
+    s = dd + mm + yy
+    digits = [int(c) for c in s if c != "0"]
+    counts = {i: 0 for i in range(1, 10)}
+    for d in digits:
+        counts[d] += 1
+    mulank = _reduce1(day)
+    bhagyank = _reduce1(sum(int(c) for c in s))
+    counts_with = dict(counts)
+    counts_with[mulank] += 1
+    counts_with[bhagyank] += 1
+    return {
+        "digits": digits,
+        "counts": counts, "counts_with": counts_with,
+        "mulank": mulank, "bhagyank": bhagyank,
+        "missing": [n for n in range(1, 10) if counts[n] == 0],
+        "missing_with": [n for n in range(1, 10) if counts_with[n] == 0],
+        "lines": _loshu_lines(counts), "lines_with": _loshu_lines(counts_with),
+        "cell": {str(k): list(v) for k, v in LOSHU_CELL.items()},
+        "planet": NUM_PLANET, "element": NUM_ELEMENT,
+        "direction": NUM_DIR, "governs": NUM_GOVERNS,
+        "present": sum(1 for n in range(1, 10) if counts[n] > 0),
+    }
