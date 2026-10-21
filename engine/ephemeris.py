@@ -110,6 +110,19 @@ def _ecl_xyz(body_name: str, t):
     return p.au  # numpy array [x, y, z] in AU, ecliptic of date
 
 
+def mean_node(jd_tt: float) -> float:
+    """Mean lunar node (Rahu) longitude, tropical, degrees (Meeus 47.7).
+
+    Vedic astrology uses the *mean* node for Rahu/Ketu (the true/osculating
+    node can differ by up to ~1.5 degrees and flips the house when Ketu sits
+    on a sign boundary).
+    """
+    T = (jd_tt - 2451545.0) / 36525.0
+    omega = (125.0445479 - 1934.1362891 * T + 0.0020754 * T * T
+             + T ** 3 / 467441.0 - T ** 4 / 60616000.0)
+    return norm360(omega)
+
+
 def true_node(t) -> float:
     """True (osculating) lunar node longitude, ecliptic of date, degrees."""
     import numpy as np
@@ -140,7 +153,7 @@ def compute_positions(t):
     out = {}
     for name in _BODY_KEYS:
         out[name] = _geocentric_lon(name, t)
-    out["Rahu"] = true_node(t)
+    out["Rahu"] = mean_node(t.tt)          # mean node (standard for Vedic)
     out["Ketu"] = norm360(out["Rahu"] + 180.0)
     return out
 
