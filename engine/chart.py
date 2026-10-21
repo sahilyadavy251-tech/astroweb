@@ -53,7 +53,8 @@ def build_chart(name, year, month, day, hour, minute, second,
 
     ayan = E.lahiri_ayanamsa(t.tt)
     eps = E.mean_obliquity(t.tt)
-    tropical = E.compute_positions(t)
+    full = E.compute_positions_full(t)          # lon+lat in ONE ephemeris pass
+    tropical = {p: full[p][0] for p in full}
     sidereal = {p: (tropical[p] - ayan) % 360 for p in tropical}
 
     # angles
@@ -74,13 +75,15 @@ def build_chart(name, year, month, day, hour, minute, second,
             speed[p] = -0.0529  # nodes are retrograde
             retro[p] = True
         else:
-            lonp, latp = E.geocentric_ecl(p, t)
-            planet_lat[p] = latp
-            l1 = E._geocentric_lon(p, ts.tt_jd(t.tt - 0.5))
-            l2 = E._geocentric_lon(p, ts.tt_jd(t.tt + 0.5))
-            d = ((l2 - l1 + 180) % 360) - 180
-            speed[p] = d
-            retro[p] = d < 0
+            planet_lat[p] = full[p][1]
+            if p in ("Mars", "Mercury", "Jupiter", "Venus", "Saturn"):
+                l1 = E._geocentric_lon(p, ts.tt_jd(t.tt - 0.5))
+                d = (((tropical[p] - l1 + 180) % 360) - 180) * 2.0
+                speed[p] = d
+                retro[p] = d < 0
+            else:                       # Sun & Moon never go retrograde
+                speed[p] = 0.9856 if p == "Sun" else 13.176
+                retro[p] = False
         decl[p] = _decl(sidereal[p], planet_lat[p], eps)
 
     # weekday (local)
@@ -88,9 +91,7 @@ def build_chart(name, year, month, day, hour, minute, second,
     dina_lord = C.VAARA_LORDS[weekday]
 
     # sunrise/sunset
-    sr, ss = E.sun_times(year, month, day, lat, lon, tz_offset)
-    sr_dt = sr.utc_datetime().replace(tzinfo=None) if sr is not None else None
-    ss_dt = ss.utc_datetime().replace(tzinfo=None) if ss is not None else None
+    sr_dt, ss_dt = E.sun_times(year, month, day, lat, lon, tz_offset)
 
     # varsha / masa lords
     mesha = E.find_sun_sign_entry(0, t)
