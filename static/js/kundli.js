@@ -84,6 +84,7 @@ function renderAll(){
   renderOverview(); renderCharts(); renderDasha(); renderShadbala();
   renderAshtaka(); renderYogas(); renderKP(); renderJaimini();
   renderLalKitab(); renderNadi(); renderNumerology();
+  renderIshta(); renderHora(); renderGolden();
 }
 function statBox(label,val){ return `<div class="stat"><b>${esc(val)}</b><span>${esc(label)}</span></div>`; }
 
@@ -177,6 +178,15 @@ function renderCharts(){
         <option value="south" ${CSTYLE==="south"?"selected":""}>${t("southIndian")}</option></select></div>
     </div>
     <div style="margin-top:14px">${CSTYLE==="north"?northChart(CVARGA):southChart(CVARGA)}</div>`;
+  const ch=DATA.chalit;
+  if(ch){
+    h+=`<h3>${LANG==="hi"?"भाव चलित (Chalit)":"Bhava Chalit (cuspal chart)"}</h3>`;
+    h+=`<p class="note">${LANG==="hi"?"प्लासिडस भाव-स्पष्ट से गणना — जहाँ ग्रह राशि-भाव से हटकर दूसरे भाव में चला जाता है।":"Computed from the Placidus cusps — planets that shift out of their whole-sign house."}</p>`;
+    h+=`<div style="overflow:auto"><table><thead><tr><th>${t("planet")}</th><th>${LANG==="hi"?"राशि भाव":"Rashi house"}</th><th>${LANG==="hi"?"चलित भाव":"Chalit house"}</th><th>${LANG==="hi"?"स्थिति":"Status"}</th></tr></thead><tbody>`;
+    for(const p of PLANETS){ const c=ch.planets[p];
+      h+=`<tr><td><b>${plName(p)}</b></td><td>${c.rashi_house}</td><td>${c.house}</td><td>${c.shifted?`<span class="pill bad">${LANG==="hi"?"खिसका":"shifted"}</span>`:`<span class="pill">—</span>`}</td></tr>`; }
+    h+=`</tbody></table></div>`;
+  }
   h+=`<h3>${t("vargaAll")}</h3><div style="overflow:auto"><table><thead><tr><th>Varga</th>`;
   for(const pl of PLANETS) h+=`<th>${PL_ABBR[pl]}</th>`; h+=`<th>As</th></tr></thead><tbody>`;
   for(const n of Object.keys(DATA.vargas)){ const v=DATA.vargas[n];
@@ -482,6 +492,76 @@ function ashtakaSection(){
     `<p class="note">${LANG==="hi"?"हर भाव में सर्वाष्टकवर्ग बिंदु (लग्न से गिनकर)। हरा = बलवान, लाल = कमज़ोर।":
       "Sarva Ashtakavarga bindus in each house, counted from the Lagna. Green = strong, red = weak."}</p>`+
     ashtakaNorthChart()+ashtakaBars()+savLegend();
+}
+
+
+/* -------- Ishta Devta -------- */
+function renderIshta(){
+  const d=DATA.ishta_devta, HI=LANG==="hi";
+  if(!d){ $("#sec-ishta").innerHTML=`<h2 class="title">${t("tabIshta")}</h2><p class="muted">—</p>`; return; }
+  const info=d.info||{};
+  let h=`<h2 class="title">${t("tabIshta")}</h2><div class="stats">
+    ${statBox(HI?"आत्मकारक":"Atmakaraka", plName(d.atmakaraka))}
+    ${statBox(HI?"कारकांश":"Karakamsa", HI?d.karakamsa_sign_hi:d.karakamsa_sign)}
+    ${statBox(HI?"कारकांश से 12वां":"12th from Karakamsa", HI?d.twelfth_sign_hi:d.twelfth_sign_en)}
+    ${statBox(HI?"इष्ट देवता ग्रह":"Ishta Devta planet", plName(d.planet))}</div>`;
+  h+=`<div class="notice">${HI?"इष्ट देवता = कारकांश से 12वें भाव का ग्रह (या उस राशि का स्वामी)। यह आपकी मुक्ति/आराधना का देवता है — कुलदेवता से अलग।":"The Ishta Devta is the planet in the 12th house from the Karakamsa (or that sign's lord) — the deity of your moksha, distinct from the family Kuldevta."}</div>`;
+  h+=`<div style="border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--purple-l)">
+    <div style="font-size:20px;font-weight:800;color:var(--purple-ink)">${esc(HI?info.deity_hi:info.deity_en)}</div>
+    <div style="margin-top:6px;font-size:13.5px"><b>${HI?"मंत्र":"Mantra"}:</b> ${esc(info.mantra)}</div>
+    <div style="font-size:13.5px"><b>${HI?"वार":"Day"}:</b> ${esc(HI?info.day_hi:info.day_en)} &nbsp; <b>${HI?"अवतार":"Avatar"}:</b> ${esc(info.avatar)}</div></div>`;
+  h+=`<h3>${HI?"5वें भाव का स्वामी (ज्योतिष विधि)":"5th-house lord (classical method)"}</h3><span class="pill">${plName(d.fifth_lord)}</span>`;
+  h+=`<h3>${HI?"ग्रह से इष्ट देवता (संदर्भ)":"Graha se Ishta Devta (reference)"}</h3><div style="overflow:auto"><table>
+    <thead><tr><th>${t("planet")}</th><th>${HI?"देवता":"Deity"}</th><th>${HI?"मंत्र":"Mantra"}</th><th>${HI?"वार":"Day"}</th></tr></thead><tbody>`;
+  d.table.forEach(x=>{
+    h+=`<tr style="${x.planet===d.planet?"background:var(--purple-l);font-weight:600":""}"><td><b>${plName(x.planet)}</b></td>
+      <td>${esc(HI?x.deity_hi:x.deity_en)}</td><td class="muted">${esc(x.mantra)}</td><td>${esc(HI?x.day_hi:x.day_en)}</td></tr>`;
+  });
+  h+=`</tbody></table></div>`;
+  $("#sec-ishta").innerHTML=h;
+}
+
+/* -------- Hora (planetary hours) -------- */
+function renderHora(){
+  const d=DATA.hora, HI=LANG==="hi";
+  if(!d || !d.horas || !d.horas.length){ $("#sec-hora").innerHTML=`<h2 class="title">${t("tabHora")}</h2><p class="muted">—</p>`; return; }
+  let h=`<h2 class="title">${t("tabHora")}</h2><div class="stats">
+    ${statBox(HI?"दिन स्वामी":"Day lord", plName(d.day_lord))}
+    ${statBox(HI?"दिन होरा":"Day hora", d.day_hora_min+" min")}
+    ${statBox(HI?"रात होरा":"Night hora", d.night_hora_min+" min")}
+    ${statBox(HI?"सूर्योदय (UTC)":"Sunrise (UTC)", (d.sunrise||"").slice(11,16))}</div>`;
+  h+=`<div class="notice">${HI?"होरा = ग्रहीय घंटा। दिन 12 होरों में, रात 12 होरों में बंटती है। जन्म की होरा हाइलाइट है।":"A hora is a planetary hour — 12 by day, 12 by night. The birth hora is highlighted."}</div>`;
+  h+=`<div style="overflow:auto"><table><thead><tr><th>#</th><th>${HI?"होरा स्वामी":"Hora lord"}</th><th>${HI?"भाग":"Part"}</th><th>${HI?"से (UTC)":"From (UTC)"}</th><th>${HI?"तक (UTC)":"To (UTC)"}</th><th>${HI?"शुभ":"Good for"}</th></tr></thead><tbody>`;
+  d.horas.forEach(x=>{
+    h+=`<tr style="${x.at_birth?"background:var(--purple-l);font-weight:700":""}">
+      <td>${x.n}</td><td><b>${plName(x.lord)}</b></td>
+      <td>${x.part==="day"?(HI?"दिन":"Day"):(HI?"रात":"Night")} ${x.in_part}</td>
+      <td>${(x.start||"").slice(11,16)}</td><td>${(x.end||"").slice(11,16)}</td>
+      <td class="muted" style="font-size:12px">${esc(x.good||"")}</td></tr>`;
+  });
+  h+=`</tbody></table></div>`;
+  $("#sec-hora").innerHTML=h;
+}
+
+/* -------- Golden Time Period -------- */
+function renderGolden(){
+  const g=DATA.golden, HI=LANG==="hi";
+  if(!g){ $("#sec-golden").innerHTML=`<h2 class="title">${t("tabGolden")}</h2><p class="muted">—</p>`; return; }
+  let h=`<h2 class="title">${t("tabGolden")}</h2>`;
+  h+=`<div class="notice">${HI?"भाव 1, 2, 4, 9, 11 की राशि-संख्या + उनमें बैठे ग्रहों के निश्चित अंक जोड़कर परिणामी भाव निकलता है। उस भाव के ग्रह आपके गोल्डन प्लैनेट हैं — उनकी दशा में अच्छे दिन आते हैं।":"Add the sign numbers of houses 1, 2, 4, 9, 11 to the fixed numbers of the planets in them; the resulting house gives your golden planets — their dasha periods are your golden days."}</div>`;
+  h+=`<div class="stats">
+    ${statBox(HI?"परिणामी भाव":"Result house", g.result_house)}
+    ${statBox(HI?"राशि":"Sign", HI?g.result_sign_hi:g.result_sign_en)}
+    ${statBox(HI?"भाव स्वामी":"House lord", plName(g.result_lord))}
+    ${statBox("X + Y", g.x+" + "+g.y+" = "+g.total)}</div>`;
+  h+=`<h3>${HI?"गोल्डन ग्रह":"Golden planets"}</h3><div>`+g.golden.map(p=>`<span class="pill good">${plName(p)}</span>`).join("")+`</div>`;
+  h+=`<h3>${HI?"गणना":"Calculation"}</h3><div style="overflow:auto"><table><thead><tr><th>${HI?"भाव":"House"}</th><th>${t("sign")}</th><th>${HI?"राशि संख्या":"Sign no."}</th><th>${HI?"ग्रह":"Planets"}</th><th>${HI?"ग्रह संख्या":"Planet no."}</th></tr></thead><tbody>`;
+  g.rows.forEach(r=>{
+    h+=`<tr><td>${r.house}</td><td>${HI?r.sign_hi:r.sign_en}</td><td>${r.rashi_num}</td>
+      <td>${r.planets.map(p=>plName(p)).join(", ")||"—"}</td><td>${r.nums.join(", ")||"—"}</td></tr>`;
+  });
+  h+=`</tbody></table></div>`;
+  $("#sec-golden").innerHTML=h;
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
