@@ -401,33 +401,33 @@ function savLegend(){
                ["#2e7d32",LANG==="hi"?"29–35 अच्छा":"29–35 good"],
                ["#ef6c00",LANG==="hi"?"21–28 साधारण":"21–28 average"],
                ["#c62828",LANG==="hi"?"≤20 कमज़ोर":"≤20 weak"]];
-  return '<div class="legend">'+items.map(i=>`<span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:${i[0]};margin-right:4px;vertical-align:-1px"></span>${i[1]}</span>`).join("")+'</div>';
+  return '<div class="legend">'+items.map(i=>`<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${i[0]};margin-right:4px;vertical-align:-1px"></span>${i[1]}</span>`).join("")+'</div>';
 }
 
-/* --- Shadbala strength bar chart --- */
+/* --- Shadbala strength bar chart (big, mobile-friendly) --- */
 function shadbalaChart(){
   const s=DATA.shadbala;
   const rows=PLANETS.slice(0,7).map(p=>({p, v:s[p].rupa, req:s[p].required_rupa, ok:s[p].sufficient}));
-  const maxV=Math.max(6, Math.max.apply(null, rows.map(r=>Math.max(r.v,r.req))))*1.14;
-  const W=780, L=94, R=46, rowH=36, top=32;
-  const H=top+rows.length*rowH+26, plotW=W-L-R;
+  const maxV=Math.max(6, Math.max.apply(null, rows.map(r=>Math.max(r.v,r.req))))*1.18;
+  const W=430, L=80, R=46, rowH=42, top=38;
+  const H=top+rows.length*rowH+30, plotW=W-L-R;
   const X=v=>L+(v/maxV)*plotW;
   let g="";
   const step=maxV>10?2:1;
   for(let v=0; v<=maxV; v+=step){
-    g+=`<line x1="${X(v)}" y1="${top-10}" x2="${X(v)}" y2="${top+rows.length*rowH}" stroke="#efe6d6"/>`;
-    g+=`<text x="${X(v)}" y="${top-14}" text-anchor="middle" font-size="10" fill="#a3906f">${v}</text>`;
+    g+=`<line x1="${X(v)}" y1="${top-12}" x2="${X(v)}" y2="${top+rows.length*rowH}" stroke="#efe6d6"/>`;
+    g+=`<text x="${X(v)}" y="${top-17}" text-anchor="middle" font-size="11.5" fill="#a3906f">${v}</text>`;
   }
-  g+=`<text x="${L+plotW/2}" y="12" text-anchor="middle" font-size="11" letter-spacing="1" fill="#a3906f">STRENGTH (RUPAS)</text>`;
+  g+=`<text x="${L+plotW/2}" y="15" text-anchor="middle" font-size="12.5" letter-spacing="1" fill="#a3906f">STRENGTH (RUPAS)</text>`;
   rows.forEach((r,i)=>{
-    const y=top+i*rowH, w=Math.max(2, X(r.v)-L);
+    const y=top+i*rowH, w=Math.max(3, X(r.v)-L);
     const col=r.ok?"#2e7d32":"#c62828";
-    g+=`<text x="${L-9}" y="${y+rowH/2+5}" text-anchor="end" font-size="12.5" font-weight="700" fill="#7d2b0f">${plName(r.p)}</text>`;
-    g+=`<rect x="${L}" y="${y+8}" width="${w}" height="${rowH-18}" rx="3" fill="${col}" opacity="0.86"/>`;
-    g+=`<text x="${L+w+7}" y="${y+rowH/2+5}" font-size="11.5" font-weight="700" fill="#374151">${r.v.toFixed(2)}</text>`;
-    g+=`<line x1="${X(r.req)}" y1="${y+5}" x2="${X(r.req)}" y2="${y+rowH-7}" stroke="#111" stroke-width="1.6" stroke-dasharray="3,2"/>`;
+    g+=`<text x="${L-11}" y="${y+rowH/2+6}" text-anchor="end" font-size="15" font-weight="700" fill="#7d2b0f">${plName(r.p)}</text>`;
+    g+=`<rect x="${L}" y="${y+9}" width="${w}" height="${rowH-20}" rx="4" fill="${col}" opacity="0.88"/>`;
+    g+=`<text x="${L+w+8}" y="${y+rowH/2+6}" font-size="13.5" font-weight="700" fill="#374151">${r.v.toFixed(2)}</text>`;
+    g+=`<line x1="${X(r.req)}" y1="${y+6}" x2="${X(r.req)}" y2="${y+rowH-8}" stroke="#111" stroke-width="2" stroke-dasharray="4,3"/>`;
   });
-  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:780px;display:block;margin:8px auto">${g}</svg>`;
+  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:540px;display:block;margin:10px auto">${g}</svg>`;
   return `<h3>${LANG==="hi"?"षड्बल — बल चार्ट":"Shadbala — strength chart"}</h3>`+
     `<p class="note">${LANG==="hi"?"हर ग्रह का कुल बल (रूप)। काली बिंदु-रेखा = आवश्यक न्यूनतम बल। हरा = पर्याप्त, लाल = कम।":
       "Total strength (rupas) of each planet. Dashed line = required minimum. Green = sufficient, red = below par."}</p>${svg}`;
@@ -445,7 +445,7 @@ function ashtakaNorthChart(){
     const [nx,ny]=NI_NUM[h];
     s+=`<text x="${nx}" y="${ny}" text-anchor="middle" style="font-size:2.6px;fill:#b0888a">${sg+1}</text>`;
     const [x,y]=NI_ANCHOR[h];
-    s+=`<text x="${x}" y="${y+1.5}" text-anchor="middle" style="font-size:7px;font-weight:800;fill:${savColor(v)}">${v}</text>`;
+    s+=`<text x="${x}" y="${y+2}" text-anchor="middle" style="font-size:8px;font-weight:800;fill:${savColor(v)}">${v}</text>`;
   }
   s+=`</svg>`;
   return s;
@@ -456,25 +456,25 @@ function ashtakaBars(){
   const sav=DATA.ashtakavarga.SAV.bav, ascSign=DATA.ascendant.sign_index;
   const vals=[]; for(let h=1;h<=12;h++){ const sg=(ascSign+h-1)%12; vals.push({h,sg,v:sav[sg]}); }
   const maxV=Math.max.apply(null, vals.map(x=>x.v).concat([1]));
-  const W=780, L=44, R=16, top=28, plotH=150, H=top+plotH+48, plotW=W-L-R;
-  const gap=plotW/12, bw=gap*0.62;
+  const W=450, L=40, R=14, top=32, plotH=210, H=top+plotH+52, plotW=W-L-R;
+  const gap=plotW/12, bw=gap*0.66;
   const Y=v=>top+plotH-(v/maxV)*plotH;
   let g="";
   for(let v=0; v<=maxV; v+=5){
     g+=`<line x1="${L}" y1="${Y(v)}" x2="${L+plotW}" y2="${Y(v)}" stroke="#efe6d6"/>`;
-    g+=`<text x="${L-6}" y="${Y(v)+3.5}" text-anchor="end" font-size="10" fill="#a3906f">${v}</text>`;
+    g+=`<text x="${L-5}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="#a3906f">${v}</text>`;
   }
   g+=`<line x1="${L}" y1="${Y(0)}" x2="${L+plotW}" y2="${Y(0)}" stroke="#d9c9ad"/>`;
   vals.forEach((x,i)=>{
     const cx=L+gap*i+gap/2, bh=Math.max(1,(x.v/maxV)*plotH);
     g+=`<rect x="${cx-bw/2}" y="${Y(x.v)}" width="${bw}" height="${bh}" rx="3" fill="${savColor(x.v)}" opacity="0.9"/>`;
-    g+=`<text x="${cx}" y="${Y(x.v)-4}" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">${x.v}</text>`;
-    g+=`<text x="${cx}" y="${top+plotH+16}" text-anchor="middle" font-size="11" font-weight="700" fill="#7d2b0f">${x.h}</text>`;
-    g+=`<text x="${cx}" y="${top+plotH+30}" text-anchor="middle" font-size="9.5" fill="#a3906f">${SHORT[x.sg]}</text>`;
+    g+=`<text x="${cx}" y="${Y(x.v)-5}" text-anchor="middle" font-size="13" font-weight="700" fill="#374151">${x.v}</text>`;
+    g+=`<text x="${cx}" y="${top+plotH+19}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#7d2b0f">${x.h}</text>`;
+    g+=`<text x="${cx}" y="${top+plotH+34}" text-anchor="middle" font-size="10.5" fill="#a3906f">${SHORT[x.sg]}</text>`;
   });
-  g+=`<text x="${L+plotW/2}" y="12" text-anchor="middle" font-size="11" letter-spacing="1" fill="#a3906f">SARVA ASHTAKAVARGA (bindus)</text>`;
-  g+=`<text x="${L+plotW/2}" y="${H-4}" text-anchor="middle" font-size="10.5" fill="#a3906f">${LANG==="hi"?"भाव (लग्न से) · राशि":"House (from Lagna) · sign"}</text>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:780px;display:block;margin:8px auto">${g}</svg>`;
+  g+=`<text x="${L+plotW/2}" y="14" text-anchor="middle" font-size="12.5" letter-spacing="1" fill="#a3906f">SARVA ASHTAKAVARGA (bindus)</text>`;
+  g+=`<text x="${L+plotW/2}" y="${H-4}" text-anchor="middle" font-size="11" fill="#a3906f">${LANG==="hi"?"भाव (लग्न से) · राशि":"House (from Lagna) · sign"}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:560px;display:block;margin:10px auto">${g}</svg>`;
 }
 
 function ashtakaSection(){
